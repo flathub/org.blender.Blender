@@ -99,6 +99,12 @@
                     "type": "archive",
                     "url": "https://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz",
                     "sha256": "ecf815b60695555c1fbc73679e84c7c9902f4e8faa6e8000d2f905b8b86cedc7"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "rm config.guess configure"
+                    ]
                 }
             ],
             "cleanup": [
@@ -125,6 +131,12 @@
                 {
                     "type": "patch",
                     "path": "openexr-no-docs.patch"
+                },
+                {
+                    "type": "shell",
+                    "commands": [
+                        "rm config.guess configure"
+                    ]
                 }
             ],
             "cleanup": [
