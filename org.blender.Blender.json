@@ -1,0 +1,411 @@
+{
+    "id": "org.blender.Blender",
+    "branch": "stable",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "1.6",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "blender",
+    "rename-desktop-file": "blender.desktop",
+    "rename-icon": "blender",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=pulseaudio",
+        "--device=dri",
+        "--filesystem=home"
+        ],
+    "modules": [
+        {
+            "name": "libglu",
+            "config-opts": [
+                "--enable-shared",
+                "--disable-static"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://mesa.freedesktop.org/archive/glu/glu-9.0.0.tar.bz2",
+                    "sha256": "1f7ad0d379a722fcbd303aa5650c6d7d5544fde83196b42a73d1193568a4df12"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/*.la",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "glew",
+            "no-autogen": true,
+            "make-args": [
+                "GLEW_PREFIX=/app",
+                "GLEW_DEST=/app",
+                "LIBDIR=/app/lib"
+            ],
+            "make-install-args": [
+                "GLEW_PREFIX=/app",
+                "GLEW_DEST=/app",
+                "LIBDIR=/app/lib"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://downloads.sourceforge.net/project/glew/glew/2.0.0/glew-2.0.0.tgz",
+                    "sha256": "c572c30a4e64689c342ba1624130ac98936d7af90c3103f9ce12b8a0c5736764"
+                },
+                {
+                    "type": "patch",
+                    "path": "glew-no-static-lib.patch"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "numpy",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://downloads.sourceforge.net/project/numpy/NumPy/1.10.4/numpy-1.10.4.tar.gz",
+                    "sha256": "f7f91842056a7cf680b0eaf8cefc5e46c69e2521e651128d2e6aaaccec8652ae"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/lib/python3.5/site-packages/numpy/core/lib/libnpymath.a",
+                "/lib/python3.5/site-packages/numpy/tests",
+                "/lib/python3.5/site-packages/numpy/*/tests"
+            ]
+        },
+        {
+            "name": "ilmbase",
+            "config-opts": [
+                "--enable-shared",
+                "--disable-static"
+            ],
+            "build-options": {
+                "env": {
+                    "LDFLAGS": "-lpthread"
+                }
+            },
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz",
+                    "sha256": "ecf815b60695555c1fbc73679e84c7c9902f4e8faa6e8000d2f905b8b86cedc7"
+                }
+            ],
+            "cleanup": [
+                "/include/OpenEXR",
+                "/lib/libHalf.la",
+                "/lib/libIex*.la",
+                "/lib/libIlm*.la",
+                "/lib/libImath*.la",
+                "/lib/pkgconfig/IlmBase.pc"
+            ]
+        },
+        {
+            "name": "openexr",
+            "config-opts": [
+                "--enable-shared",
+                "--disable-static"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.savannah.nongnu.org/releases/openexr/openexr-2.2.0.tar.gz",
+                    "sha256": "36a012f6c43213f840ce29a8b182700f6cf6b214bea0d5735594136b44914231"
+                },
+                {
+                    "type": "patch",
+                    "path": "openexr-no-docs.patch"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.la",
+                "/lib/pkgconfig",
+                "/share/aclocal"
+            ]
+        },
+        {
+            "name": "boost",
+            "buildsystem": "simple",
+            "build-commands": [
+                "./bootstrap.sh --prefix=/app --with-libraries=date_time,filesystem,locale,regex,system,thread",
+                "./b2 --build-type=minimal link=shared",
+                "./b2 --build-type=minimal link=shared install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2",
+                    "sha256": "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "openimageio",
+            "cmake": true,
+            "config-opts": [
+                "-DOIIO_BUILD_TOOLS:BOOL=OFF",
+                "-DOIIO_BUILD_TESTS:BOOL=OFF",
+                "-DBUILDSTATIC:BOOL=OFF",
+                "-DINSTALL_DOCS:BOOL=OFF"
+            ],
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.6.17.tar.gz",
+                    "sha256": "632fc1e54c882c024bf3ed50b57358af5eade9ca10c3659c0ab5477aae009bb2"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "opencolorio",
+            "cmake": true,
+            "config-opts": [
+                "-DOCIO_BUILD_APPS:BOOL=OFF",
+                "-DOCIO_BUILD_DOCS:BOOL=OFF",
+                "-DOCIO_BUILD_STATIC:BOOL=OFF",
+                "-DOCIO_BUILD_TESTS:BOOL=OFF",
+                "-DPYTHON=/usr/bin/python3.5"
+            ],
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.0.9.tar.gz",
+                    "sha256": "27c81e691c15753cd2b560c2ca4bd5679a60c2350eedd43c99d44ca25d65ea7f"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/share"
+            ]
+        },
+        {
+            "name": "yasm",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz",
+                    "sha256": "3dce6601b495f5b3d45b59f7d2492a340ee7e84b5beca17e48f862502bd5603f"
+                }
+            ],
+            "cleanup": [
+                "*"
+            ]
+        },
+        {
+            "name": "openjpeg",
+            "cmake": true,
+            "builddir": true,
+            "config-opts": [
+                "-DBUILD_CODEC:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/uclouvain/openjpeg/archive/version.1.5.2.tar.gz",
+                    "sha256": "3734e95edd0bef6e056815591755efd822228dc3cd866894e00a2c929026b16d"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/openjpeg-1.5",
+                "/lib/pkgconfig",
+                "/share"
+            ]
+        },
+        {
+            "name": "openal",
+            "cmake": true,
+            "builddir": true,
+            "config-opts": [
+                "-DALSOFT_UTILS:BOOL=OFF",
+                "-DALSOFT_EXAMPLES:BOOL=OFF",
+                "-DALSOFT_TESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://kcat.strangesoft.net/openal-releases/openal-soft-1.17.2.tar.bz2", /* No HTTPS */
+                    "sha256": "a341f8542f1f0b8c65241a17da13d073f18ec06658e1a1606a8ecc8bbc2b3314"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/share"
+            ]
+        },
+        {
+            "name": "gpac",
+            "config-opts": [
+                /* x264 needs the static lib */
+                "--disable-shared",
+                "--enable-static",
+                "--disable-doc"
+            ],
+            "make-install-args": [
+                "install-lib"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/gpac/gpac/archive/v0.6.1.tar.gz",
+                    "sha256": "67d1ac8f8b3e74da0e4e38ea926dc15bca6e9941e8f366e3538abcf13c103c09"
+                }
+            ],
+            "cleanup": [
+                "*"
+            ]
+        },
+        {
+            "name": "x264",
+            "config-opts": [
+                "--enable-shared",
+                "--disable-cli"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20160911-2245-stable.tar.bz2",
+                    "sha256": "5ccc61f489d738a4a70857fd2a17f351c234961cb4d1bc8da31da9a1ae18719e"
+                },
+                {
+                    "type": "patch",
+                    "path": "x264-gpac.patch"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "ffmpeg",
+            "config-opts": [
+                "--enable-shared",
+                "--disable-static",
+                "--disable-doc",
+                "--enable-gpl",
+                "--enable-version3",
+                "--disable-nonfree",
+                "--enable-optimizations",
+                "--enable-pthreads",
+
+                "--disable-bzlib",
+                "--disable-libgsm",
+                "--enable-libtheora",
+                "--enable-libvorbis",
+                "--enable-libvpx",
+                "--enable-libx264",
+                "--disable-x11grab",
+                "--enable-zlib",
+                "--disable-libxcb",
+                "--disable-lzma",
+
+                "--disable-programs",
+                "--disable-network",
+
+                "--disable-protocols",
+                "--enable-protocol=file",
+
+                "--disable-devices",
+
+                "--enable-muxer=avi",
+                "--enable-muxer=h264",
+                "--enable-muxer=mov",
+                "--enable-muxer=mp4",
+                "--enable-muxer=ogg",
+                "--enable-muxer=webm",
+
+                "--enable-demuxer=avi",
+                "--enable-demuxer=h264",
+                "--enable-demuxer=mov",
+                "--enable-demuxer=mp3",
+                "--enable-demuxer=ogg",
+                "--enable-demuxer=wav",
+
+                "--enable-parser=h264",
+                "--enable-parser=vorbis",
+
+                "--enable-encoder=aac",
+                "--enable-encoder=libtheora",
+                "--enable-encoder=libvorbis",
+                "--enable-encoder=libvpx_vp8",
+                "--enable-encoder=libvpx_vp9",
+                "--enable-encoder=libx264",
+                "--enable-encoder=mpeg4",
+
+                "--enable-decoder=aac",
+                "--enable-decoder=h264",
+                "--enable-decoder=libvorbis",
+                "--enable-decoder=libvpx_vp8",
+                "--enable-decoder=libvpx_vp9",
+                "--enable-decoder=mp3",
+                "--enable-decoder=mpeg4",
+                "--enable-decoder=pcm_s16le",
+                "--enable-decoder=theora"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ffmpeg.org/releases/ffmpeg-2.8.8.tar.xz",
+                    "sha256": "f94e2f71aacd1fdb1e28aac8cf36aa457c13b0fc9bf704b467d91489705d2199"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "blender",
+            "cmake": true,
+            "config-opts": [
+                "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
+                "-DWITH_PYTHON_INSTALL:BOOL=OFF",
+                "-DWITH_PLAYER:BOOL=ON",
+                "-DWITH_OPENCOLORIO:BOOL=ON",
+                "-DWITH_CODEC_FFMPEG:BOOL=ON"
+            ],
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.blender.org/source/blender-2.78c.tar.gz",
+                    "sha256": "64a98ff30300f79385ddb9ad016aa790a92720ff2feb84ddb1d097e6531dd338"
+                },
+                {
+                    "type": "file",
+                    "path": "org.blender.Blender.appdata.xml"
+                }
+            ],
+            "post-install": [
+                "mkdir -p /app/share/appdata",
+                "install -m644 -p ../org.blender.Blender.appdata.xml /app/share/appdata/"
+            ],
+            "cleanup": [
+                "/share/doc"
+            ]
+        }
+    ]
+}
