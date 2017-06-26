@@ -198,6 +198,22 @@
                 "-DPYTHON=/usr/bin/python3.5"
             ],
             "builddir": true,
+            "build-options" : {
+                "arch" : {
+                    "arm" : {
+                        "config-opts" : [
+                            "-DOCIO_USE_SSE:BOOL=OFF"
+                        ]
+                    }
+                },
+                "arch" : {
+                    "aarch64" : {
+                        "config-opts" : [
+                            "-DOCIO_USE_SSE:BOOL=OFF"
+                        ]
+                    }
+                }
+            },
             "sources": [
                 {
                     "type": "archive",
