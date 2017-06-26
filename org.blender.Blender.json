@@ -204,9 +204,7 @@
                         "config-opts" : [
                             "-DOCIO_USE_SSE:BOOL=OFF"
                         ]
-                    }
-                },
-                "arch" : {
+                    },
                     "aarch64" : {
                         "config-opts" : [
                             "-DOCIO_USE_SSE:BOOL=OFF"
