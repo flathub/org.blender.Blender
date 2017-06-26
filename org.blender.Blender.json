@@ -287,7 +287,8 @@
                 /* x264 needs the static lib */
                 "--disable-shared",
                 "--enable-static",
-                "--disable-doc"
+                "--disable-doc",
+                "--extra-cflags=-fPIC"
             ],
             "make-install-args": [
                 "install-lib"
