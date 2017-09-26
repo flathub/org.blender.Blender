@@ -66,6 +66,63 @@
             ]
         },
         {
+            "name": "boost",
+            "buildsystem": "simple",
+            "build-commands": [
+                "./bootstrap.sh --prefix=/app --with-libraries=date_time,filesystem,locale,regex,system,thread",
+                "./b2 --build-type=minimal link=shared",
+                "./b2 --build-type=minimal link=shared install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2",
+                    "sha256": "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "opencolorio",
+            "cmake": true,
+            "config-opts": [
+                "-DOCIO_BUILD_APPS:BOOL=OFF",
+                "-DOCIO_BUILD_DOCS:BOOL=OFF",
+                "-DOCIO_BUILD_STATIC:BOOL=OFF",
+                "-DOCIO_BUILD_TESTS:BOOL=OFF",
+                "-DPYTHON=/usr/bin/python3.5"
+            ],
+            "builddir": true,
+            "build-options" : {
+                "arch" : {
+                    "arm" : {
+                        "config-opts" : [
+                            "-DOCIO_USE_SSE:BOOL=OFF"
+                        ]
+                    },
+                    "aarch64" : {
+                        "config-opts" : [
+                            "-DOCIO_USE_SSE:BOOL=OFF"
+                        ]
+                    }
+                }
+            },
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.0.9.tar.gz",
+                    "sha256": "27c81e691c15753cd2b560c2ca4bd5679a60c2350eedd43c99d44ca25d65ea7f"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/share"
+            ]
+        },
+        {
             "name": "ilmbase",
             "config-opts": [
                 "--enable-shared",
@@ -130,25 +187,6 @@
             ]
         },
         {
-            "name": "boost",
-            "buildsystem": "simple",
-            "build-commands": [
-                "./bootstrap.sh --prefix=/app --with-libraries=date_time,filesystem,locale,regex,system,thread",
-                "./b2 --build-type=minimal link=shared",
-                "./b2 --build-type=minimal link=shared install"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2",
-                    "sha256": "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b"
-                }
-            ],
-            "cleanup": [
-                "/include"
-            ]
-        },
-        {
             "name": "openimageio",
             "cmake": true,
             "config-opts": [
@@ -167,44 +205,6 @@
             ],
             "cleanup": [
                 "/include"
-            ]
-        },
-        {
-            "name": "opencolorio",
-            "cmake": true,
-            "config-opts": [
-                "-DOCIO_BUILD_APPS:BOOL=OFF",
-                "-DOCIO_BUILD_DOCS:BOOL=OFF",
-                "-DOCIO_BUILD_STATIC:BOOL=OFF",
-                "-DOCIO_BUILD_TESTS:BOOL=OFF",
-                "-DPYTHON=/usr/bin/python3.5"
-            ],
-            "builddir": true,
-            "build-options" : {
-                "arch" : {
-                    "arm" : {
-                        "config-opts" : [
-                            "-DOCIO_USE_SSE:BOOL=OFF"
-                        ]
-                    },
-                    "aarch64" : {
-                        "config-opts" : [
-                            "-DOCIO_USE_SSE:BOOL=OFF"
-                        ]
-                    }
-                }
-            },
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.0.9.tar.gz",
-                    "sha256": "27c81e691c15753cd2b560c2ca4bd5679a60c2350eedd43c99d44ca25d65ea7f"
-                }
-            ],
-            "cleanup": [
-                "/include",
-                "/lib/pkgconfig",
-                "/share"
             ]
         },
         {
