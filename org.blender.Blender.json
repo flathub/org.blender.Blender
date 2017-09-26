@@ -199,8 +199,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.6.17.tar.gz",
-                    "sha256": "632fc1e54c882c024bf3ed50b57358af5eade9ca10c3659c0ab5477aae009bb2"
+                    "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.7.15.tar.gz",
+                    "sha256": "5db80981a3f87ad4a2a0c684884ad28f8c879570318dc79ba485b69e6fe77e73"
                 }
             ],
             "cleanup": [
@@ -378,8 +378,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.78c.tar.gz",
-                    "sha256": "64a98ff30300f79385ddb9ad016aa790a92720ff2feb84ddb1d097e6531dd338"
+                    "url": "http://download.blender.org/source/blender-2.79.tar.gz",
+                    "sha256": "a9de03e769a2a4a0bf92186556896c4f4d32fd9ac4480915ae92d7f95b25c899"
                 },
                 {
                     "type": "file",
