@@ -86,7 +86,7 @@
         },
         {
             "name": "opencolorio",
-            "cmake": true,
+            "buildsystem": "cmake",
             "config-opts": [
                 "-DOCIO_BUILD_APPS:BOOL=OFF",
                 "-DOCIO_BUILD_DOCS:BOOL=OFF",
@@ -188,7 +188,7 @@
         },
         {
             "name": "openimageio",
-            "cmake": true,
+            "buildsystem": "cmake",
             "config-opts": [
                 "-DOIIO_BUILD_TOOLS:BOOL=OFF",
                 "-DOIIO_BUILD_TESTS:BOOL=OFF",
@@ -222,7 +222,7 @@
         },
         {
             "name": "openjpeg",
-            "cmake": true,
+            "buildsystem": "cmake",
             "builddir": true,
             "config-opts": [
                 "-DBUILD_CODEC:BOOL=OFF"
@@ -366,7 +366,7 @@
         },
         {
             "name": "blender",
-            "cmake": true,
+            "buildsystem": "cmake",
             "config-opts": [
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF",
