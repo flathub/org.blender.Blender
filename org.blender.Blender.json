@@ -12,9 +12,7 @@
         "--socket=x11",
         "--socket=pulseaudio",
         "--device=dri",
-        "--filesystem=home",
-        "--filesystem=/mnt",
-        "--filesystem=/media"
+        "--filesystem=host"
         ],
     "modules": [
         "shared-modules/glu/glu-9.0.0.json",
