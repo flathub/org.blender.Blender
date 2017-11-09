@@ -245,7 +245,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20160911-2245-stable.tar.bz2",
+                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20160911-2245-stable.tar.bz2",
                     "sha256": "5ccc61f489d738a4a70857fd2a17f351c234961cb4d1bc8da31da9a1ae18719e"
                 },
                 {
