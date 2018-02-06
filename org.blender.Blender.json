@@ -431,7 +431,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.blender.org/source/blender-2.79.tar.gz",
+                    "url": "https://download.blender.org/source/blender-2.79.tar.gz",
                     "sha256": "a9de03e769a2a4a0bf92186556896c4f4d32fd9ac4480915ae92d7f95b25c899"
                 },
                 {
