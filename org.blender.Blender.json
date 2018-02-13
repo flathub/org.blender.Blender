@@ -61,6 +61,7 @@
             "name": "opencolorio",
             "buildsystem": "cmake",
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DOCIO_BUILD_APPS:BOOL=OFF",
                 "-DOCIO_BUILD_DOCS:BOOL=OFF",
                 "-DOCIO_BUILD_STATIC:BOOL=OFF",
@@ -198,6 +199,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DBUILD_CODEC:BOOL=OFF"
             ],
             "sources": [
@@ -418,6 +420,7 @@
             "name": "blender",
             "buildsystem": "cmake-ninja",
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF",
                 "-DWITH_PLAYER:BOOL=ON",
