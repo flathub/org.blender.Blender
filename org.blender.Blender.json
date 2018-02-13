@@ -161,7 +161,7 @@
         },
         {
             "name": "openimageio",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "config-opts": [
                 "-DOIIO_BUILD_TOOLS:BOOL=OFF",
                 "-DOIIO_BUILD_TESTS:BOOL=OFF",
@@ -195,7 +195,7 @@
         },
         {
             "name": "openjpeg",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DBUILD_CODEC:BOOL=OFF"
@@ -416,7 +416,7 @@
         },
         {
             "name": "blender",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "config-opts": [
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF",
