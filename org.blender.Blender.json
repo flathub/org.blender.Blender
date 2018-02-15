@@ -61,6 +61,7 @@
             "name": "opencolorio",
             "buildsystem": "cmake",
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DOCIO_BUILD_APPS:BOOL=OFF",
                 "-DOCIO_BUILD_DOCS:BOOL=OFF",
                 "-DOCIO_BUILD_STATIC:BOOL=OFF",
@@ -161,7 +162,7 @@
         },
         {
             "name": "openimageio",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "config-opts": [
                 "-DOIIO_BUILD_TOOLS:BOOL=OFF",
                 "-DOIIO_BUILD_TESTS:BOOL=OFF",
@@ -195,9 +196,10 @@
         },
         {
             "name": "openjpeg",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DBUILD_CODEC:BOOL=OFF"
             ],
             "sources": [
@@ -416,8 +418,9 @@
         },
         {
             "name": "blender",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF",
                 "-DWITH_PLAYER:BOOL=ON",
@@ -428,7 +431,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.blender.org/source/blender-2.79.tar.gz",
+                    "url": "https://download.blender.org/source/blender-2.79.tar.gz",
                     "sha256": "a9de03e769a2a4a0bf92186556896c4f4d32fd9ac4480915ae92d7f95b25c899"
                 },
                 {
