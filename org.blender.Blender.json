@@ -42,7 +42,7 @@
             "name": "boost",
             "buildsystem": "simple",
             "build-commands": [
-                "./bootstrap.sh --prefix=/app --with-libraries=date_time,filesystem,locale,regex,system,thread",
+                "./bootstrap.sh --prefix=/app --with-libraries=date_time,filesystem,iostreams,locale,regex,system,thread",
                 "./b2 --build-type=minimal link=shared",
                 "./b2 --build-type=minimal link=shared install"
             ],
@@ -340,6 +340,201 @@
             ]
         },
         {
+            "name": "fftw",
+            "config-opts": [
+                "--enable-shared",
+                "--enable-threads",
+                "--enable-openmp"
+            ],
+            "build-options" : {
+                "arch" : {
+                    "x86_64" : {
+                        "config-opts" : [
+                            "--enable-sse2",
+                            "--enable-avx"
+                        ]
+                    }
+                }
+            },
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.fftw.org/fftw-3.3.7.tar.gz",
+                    "sha256": "3b609b7feba5230e8f6dd8d245ddbefac324c5a6ae4186947670d9ac2cd25573"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a",
+                "/lib/*.la",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "opencollada",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DUSE_EXPAT=OFF",
+                "-DUSE_STATIC=ON"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/KhronosGroup/OpenCOLLADA.git",
+                    "branch": "0c2cdc17c22cf42050e4d42154bed2176363549c"
+                },
+                {
+                    "type": "patch",
+                    "path": "opencollada-Add-signed-char-keyword.patch"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/opencollada"
+            ]
+        },
+        {
+            "name": "tbb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make tbb_build_prefix=",
+                "install -p -D -m755 build/_release/libtbb.so.2 /app/lib/libtbb.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbb.so",
+                "install -p -D -m755 build/_release/libtbbmalloc.so.2 /app/lib/libtbbmalloc.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbbmalloc.so",
+                "install -p -D -m755 build/_release/libtbbmalloc_proxy.so.2 /app/lib/libtbbmalloc_proxy.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbbmalloc_proxy.so",
+                "cp -dR --preserve=mode,timestamp include/tbb /app/include/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/01org/tbb/archive/2018_U2.tar.gz",
+                    "sha256": "78bb9bae474736d213342f01fe1a6d00c6939d5c75b367e2e43e7bf29a6d8eca"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "blosc",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_BENCHMARKS:BOOL=OFF",
+                "-DBUILD_TESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/Blosc/c-blosc/archive/v1.7.1.tar.gz",
+                    "sha256": "707f3feef118d4a3e034f07021a87198ec182bb0c07adf72bec21a92b988454e"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/*.a"
+            ]
+        },
+        {
+            "name": "glfw",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/glfw/glfw/releases/download/3.2.1/glfw-3.2.1.zip",
+                    "sha256": "b7d55e13e07095119e7d5f6792586dd0849c9fcdd867d49a4a5ac31f982f7326"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "openvdb",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBLOSC_LOCATION=/app",
+                "-DGLFW3_INCLUDE_DIR=/app/include/GLFW",
+                "-DGLFW3_LOCATION=/app",
+                "-DUSE_GLFW3:BOOL=ON",
+                "-DILMBASE_LOCATION=/app",
+                "-DILMBASE_NAMESPACE_VERSIONING:BOOL=OFF",
+                "-DOPENEXR_LOCATION=/app",
+                "-DOPENEXR_NAMESPACE_VERSIONING:BOOL=OFF",
+                "-DTBB_LOCATION=/app",
+                "-DOPENVDB_BUILD_DOCS:BOOL=OFF",
+                "-DOPENVDB_BUILD_HOUDINI_SOPS:BOOL=OFF",
+                "-DOPENVDB_BUILD_MAYA_PLUGIN:BOOL=OFF",
+                "-DOPENVDB_BUILD_PYTHON_MODULE:BOOL=OFF",
+                "-DOPENVDB_BUILD_UNITTESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/dreamworksanimation/openvdb/archive/v4.0.2.tar.gz",
+                    "sha256": "7d995976cf124136b874d006496c37589f32de1b877ee7ccce626710823e8dbb"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a"
+            ]
+        },
+        {
+            "name": "jemalloc",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.0.1/jemalloc-5.0.1.tar.bz2",
+                    "sha256": "4814781d395b0ef093b21a08e8e6e0bd3dab8762f9935bbfb71679b0dea7c3e9"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a",
+                "/lib/pkgconfig",
+                "/share/doc"
+            ]
+        },
+        {
+            "name": "alembic",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DUSE_BINARIES:BOOL=OFF",
+                "-DUSE_EXAMPLES:BOOL=OFF",
+                "-DUSE_TESTS:BOOL=OFF",
+                "-DALEMBIC_SHARED_LIBS:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/alembic/alembic/archive/1.7.5.tar.gz",
+                    "sha256": "ab0c727bfc4aedfe81c2365e604fb457056dc66909575ccfe19ed406e67c002e"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
             "name": "certifi",
             "buildsystem": "simple",
             "build-commands": [
@@ -420,14 +615,70 @@
             "name": "blender",
             "buildsystem": "cmake-ninja",
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
-                "-DWITH_PYTHON_INSTALL:BOOL=OFF",
-                "-DWITH_PLAYER:BOOL=ON",
+                /* Same as upstream official builds */
+                "-DWITH_ALEMBIC:BOOL=ON",
+                "-DWITH_BUILDINFO:BOOL=ON",
+                "-DWITH_BULLET:BOOL=ON",
+                "-DWITH_CODEC_AVI:BOOL=ON",
+                "-DWITH_CODEC_FFMPEG:BOOL=ON",
+                "-DWITH_CODEC_SNDFILE:BOOL=ON",
+                "-DWITH_CYCLES:BOOL=ON",
+                "-DWITH_CYCLES_OSL:BOOL=ON",
+                "-DWITH_CYCLES_OPENSUBDIV:BOOL=ON",
+                "-DWITH_FFTW3:BOOL=ON",
+                "-DWITH_LIBMV:BOOL=ON",
+                "-DWITH_LIBMV_SCHUR_SPECIALIZATIONS:BOOL=ON",
+                "-DWITH_GAMEENGINE:BOOL=ON",
+                "-DWITH_COMPOSITOR:BOOL=ON",
+                "-DWITH_FREESTYLE:BOOL=ON",
+                "-DWITH_GHOST_XDND:BOOL=ON",
+                "-DWITH_IK_SOLVER:BOOL=ON",
+                "-DWITH_IK_ITASC:BOOL=ON",
+                "-DWITH_IMAGE_CINEON:BOOL=ON",
+                "-DWITH_IMAGE_DDS:BOOL=ON",
+                "-DWITH_IMAGE_FRAMESERVER:BOOL=ON",
+                "-DWITH_IMAGE_HDR:BOOL=ON",
+                "-DWITH_IMAGE_OPENEXR:BOOL=ON",
+                "-DWITH_IMAGE_OPENJPEG:BOOL=ON",
+                "-DWITH_IMAGE_TIFF:BOOL=ON",
+                "-DWITH_INTERNATIONAL:BOOL=ON",
+                "-DWITH_JACK:BOOL=ON",
+                "-DWITH_LZMA:BOOL=ON",
+                "-DWITH_LZO:BOOL=ON",
+                "-DWITH_MOD_BOOLEAN:BOOL=ON",
+                "-DWITH_MOD_FLUID:BOOL=ON",
+                "-DWITH_MOD_REMESH:BOOL=ON",
+                "-DWITH_MOD_SMOKE:BOOL=ON",
+                "-DWITH_MOD_OCEANSIM:BOOL=ON",
+                "-DWITH_AUDASPACE:BOOL=ON",
+                "-DWITH_OPENAL:BOOL=ON",
+                "-DWITH_OPENCOLLADA:BOOL=ON",
                 "-DWITH_OPENCOLORIO:BOOL=ON",
-                "-DWITH_CODEC_FFMPEG:BOOL=ON"
+                "-DWITH_OPENMP:BOOL=ON",
+                "-DWITH_OPENVDB:BOOL=ON",
+                "-DWITH_OPENVDB_BLOSC:BOOL=ON",
+                "-DWITH_RAYOPTIMIZATION:BOOL=ON",
+                "-DWITH_SDL:BOOL=ON",
+                "-DWITH_X11_XINPUT:BOOL=ON",
+                "-DWITH_X11_XF86VMODE:BOOL=ON",
+                "-DWITH_PLAYER:BOOL=ON",
+                "-DWITH_MEM_JEMALLOC:BOOL=ON",
+                "-DWITH_CYCLES_CUDA_BINARIES:BOOL=ON",
+                "-DCYCLES_CUDA_BINARIES_ARCH:STRING=sm_20;sm_21;sm_30;sm_35;sm_37;sm_50;sm_52;sm_60;sm_61",
+                "-DWITH_OPENSUBDIV:BOOL=ON",
+
+                /* Changed from upstream official builds */
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DWITH_DOC_MANPAGE:BOOL=OFF",
+                "-DWITH_INPUT_NDOF:BOOL=OFF",
+                "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
+                "-DWITH_JACK:BOOL=OFF",
+                "-DWITH_PYTHON_INSTALL:BOOL=OFF"
             ],
             "builddir": true,
+            "build-options": {
+                "cxxflags": "-DOPENVDB_3_ABI_COMPATIBLE"
+            },
             "sources": [
                 {
                     "type": "archive",
