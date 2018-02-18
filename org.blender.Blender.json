@@ -688,6 +688,10 @@
                 {
                     "type": "file",
                     "path": "org.blender.Blender.appdata.xml"
+                },
+                {
+                    "type": "patch",
+                    "path": "blender-Find-libcuda.so.1.patch"
                 }
             ],
             "post-install": [
