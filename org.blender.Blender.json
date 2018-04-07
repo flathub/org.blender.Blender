@@ -330,8 +330,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-2.8.8.tar.xz",
-                    "sha256": "f94e2f71aacd1fdb1e28aac8cf36aa457c13b0fc9bf704b467d91489705d2199"
+                    "url": "https://www.ffmpeg.org/releases/ffmpeg-3.2.10.tar.xz",
+                    "sha256": "3c1626220c7b68ff6be7312559f77f3c65ff6809daf645d4470ac0189926bdbc"
                 }
             ],
             "cleanup": [
@@ -412,8 +412,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/01org/tbb/archive/2018_U2.tar.gz",
-                    "sha256": "78bb9bae474736d213342f01fe1a6d00c6939d5c75b367e2e43e7bf29a6d8eca"
+                    "url": "https://github.com/01org/tbb/archive/2018_U3.tar.gz",
+                    "sha256": "23793c8645480148e9559df96b386b780f92194c80120acce79fcdaae0d81f45"
                 }
             ],
             "cleanup": [
@@ -526,8 +526,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/alembic/alembic/archive/1.7.5.tar.gz",
-                    "sha256": "ab0c727bfc4aedfe81c2365e604fb457056dc66909575ccfe19ed406e67c002e"
+                    "url": "https://github.com/alembic/alembic/archive/1.7.7.tar.gz",
+                    "sha256": "831b016afa9e66187b66819a02c0bd198b0f30e501a3552d0634796728cf1bff"
                 }
             ],
             "cleanup": [
@@ -543,8 +543,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2017.7.27.1.tar.gz",
-                    "sha256": "40523d2efb60523e113b44602298f0960e900388cf3bb6043f645cf57ea9e3f5"
+                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2018.1.18.tar.gz",
+                    "sha256": "edbc3f203427eef571f79a7692bb160a2b0f7ccaa31953e99bd17e307cf63f7d"
                 }
             ]
         },
@@ -557,12 +557,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/c/chardet/chardet-3.0.2.tar.gz",
-                    "sha256": "4f7832e7c583348a9eddd927ee8514b3bf717c061f57b21dbe7697211454d9bb"
-                },
-                {
-                    "type": "patch",
-                    "path": "chardet-do-not-require-pytest-runner.patch"
+                    "url": "https://files.pythonhosted.org/packages/source/c/chardet/chardet-3.0.4.tar.gz",
+                    "sha256": "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
                 }
             ],
             "cleanup": [
