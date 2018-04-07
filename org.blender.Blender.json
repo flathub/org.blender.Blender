@@ -480,30 +480,16 @@
         },
         {
             "name": "openvdb",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DBLOSC_LOCATION=/app",
-                "-DGLFW3_INCLUDE_DIR=/app/include/GLFW",
-                "-DGLFW3_LOCATION=/app",
-                "-DUSE_GLFW3:BOOL=ON",
-                "-DILMBASE_LOCATION=/app",
-                "-DILMBASE_NAMESPACE_VERSIONING:BOOL=OFF",
-                "-DOPENEXR_LOCATION=/app",
-                "-DOPENEXR_NAMESPACE_VERSIONING:BOOL=OFF",
-                "-DTBB_LOCATION=/app",
-                "-DOPENVDB_BUILD_DOCS:BOOL=OFF",
-                "-DOPENVDB_BUILD_HOUDINI_SOPS:BOOL=OFF",
-                "-DOPENVDB_BUILD_MAYA_PLUGIN:BOOL=OFF",
-                "-DOPENVDB_BUILD_PYTHON_MODULE:BOOL=OFF",
-                "-DOPENVDB_BUILD_UNITTESTS:BOOL=OFF"
+            "subdir": "openvdb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= PYTHON_VERSION= DOXYGEN= install"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/dreamworksanimation/openvdb/archive/v4.0.2.tar.gz",
-                    "sha256": "7d995976cf124136b874d006496c37589f32de1b877ee7ccce626710823e8dbb"
+                    "url": "https://github.com/dreamworksanimation/openvdb/archive/v3.1.0.tar.gz",
+                    "sha256": "b95a32f4f0195452a64870bda978999a719006a0c036b9ac985b466532d32d4b"
                 }
             ],
             "cleanup": [
@@ -678,8 +664,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.79.tar.gz",
-                    "sha256": "a9de03e769a2a4a0bf92186556896c4f4d32fd9ac4480915ae92d7f95b25c899"
+                    "url": "https://download.blender.org/source/blender-2.79b.tar.gz",
+                    "sha256": "4c944c304a49e68ac687ea06f5758204def049b66dc211e1cffa1857716393bc"
                 },
                 {
                     "type": "file",
