@@ -368,7 +368,9 @@
                 "/include",
                 "/lib/*.a",
                 "/lib/*.la",
-                "/lib/pkgconfig"
+                "/lib/pkgconfig",
+                "/share/info",
+                "/share/man"
             ]
         },
         {
@@ -475,7 +477,8 @@
                 "/include",
                 "/lib/*.a",
                 "/lib/pkgconfig",
-                "/share/doc"
+                "/share/doc",
+                "/share/man"
             ]
         },
         {
