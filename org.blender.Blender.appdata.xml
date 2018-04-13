@@ -1,45 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2014 Richard Hughes <richard@hughsie.com> -->
-<!--
-BugReportURL: Long discussions with sergey on #blendercoders
-BugReportURL: http://lists.blender.org/pipermail/bf-committers/2014-September/044217.html
-SentUpstream: 2014-09-23
--->
-<application>
-  <id type="desktop">blender.desktop</id>
-  <name>Blender</name>
-  <summary>A 3D creation application</summary>
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-2.0</project_license>
-  <description>
-    <p>
-      Blender provides a broad spectrum of modeling, texturing, lighting,
-      animation and video post-processing functionality in one package.
-      Through its open architecture, Blender provides cross-platform
-      interoperability, extensibility, an incredibly small footprint, and a
-      tightly integrated workflow.
-      Blender is one of the most popular Open Source 3D graphics applications in
-      the world.
-    </p>
-    <p>
-      Aimed at media professionals and artists world-wide, Blender can be used
-      to create 3D visualizations and still images, as well as broadcast- and
-      cinema-quality videos, while the incorporation of a real-time 3D engine
-      allows for the creation of 3D interactive content for stand-alone
-      playback.
-    </p>
-  </description>
-  <url type="homepage">http://www.blender.org/</url>
-  <screenshots>
-    <screenshot type="default">https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/a.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/b.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/c.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/d.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/e.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/f.png</screenshot>
-    <screenshot>https://raw.githubusercontent.com/hughsie/fedora-appstream/master/screenshots-extra/blender/g.png</screenshot>
-  </screenshots>
-  <!-- FIXME: change this to an upstream email address for spec updates
-  <update_contact>someone_who_cares@upstream_project.org</update_contact>
-  -->
-</application>
+<component type="desktop">
+    <id>org.blender.Blender</id>
+    <launchable type="desktop-id">org.blender.Blender.desktop</launchable>
+    <name>Blender</name>
+    <summary>Free and open source 3D creation suite</summary>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0</project_license>
+    <description>
+        <p>
+            Blender is the free and open source 3D creation suite. It supports
+            the entirety of the 3D pipeline — modeling, rigging, animation,
+            simulation, rendering, compositing and motion tracking, even video
+            editing and game creation.
+        </p>
+
+        <p>
+            Advanced users can employ Blender’s API for Python scripting to
+            customize the application and write specialized tools. Blender is
+            well suited to individuals and small studios who benefit from its
+            unified pipeline and responsive development process.
+        </p>
+    </description>
+    <url type="homepage">http://www.blender.org</url>
+    <url type="help">https://www.blender.org/support/</url>
+    <url type="bugtracker">https://developer.blender.org</url>
+    <url type="donation">https://www.blender.org/foundation/donation-payment/</url>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://download.blender.org/demo/screenshots/blender_screenshot_1.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image>https://download.blender.org/demo/screenshots/blender_screenshot_2.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image>https://download.blender.org/demo/screenshots/blender_screenshot_3.jpg</image>
+        </screenshot>
+        <screenshot>
+            <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
+        </screenshot>
+    </screenshots>
+    <releases>
+        <release version="2.79.b" date="2018-03-23">
+            <description>
+                <p>This is a maintenance release fixing many bugs.</p>
+            </description>
+        </release>
+        <release version="2.79.a" date="2018-02-27">
+            <description>
+                <p>This is a maintenance release fixing over 200 bugs.</p>
+            </description>
+        </release>
+        <release version="2.79" date="2017-09-12">
+            <description>
+                <p>New features:</p>
+                <ul>
+                    <li>Denoiser</li>
+                    <li>Filmic color management</li>
+                    <li>PBR shader</li>
+                    <li>Shadow catcher</li>
+                    <li>Surface Deform modifier</li>
+                    <li>More bundled add-ons</li>
+                    <li>...And many more!</li>
+                </ul>
+                <p>Enhancements:</p>
+                <ul>
+                    <li>Faster OpenCL</li>
+                    <li>Cycles improvements</li>
+                    <li>Modeling tool improvements</li>
+                    <li>Animation improvements</li>
+                    <li>Grease Pencil improvements</li>
+                    <li>Automatic scaling on high DPI displays</li>
+                    <li>Alembic import and export improvements</li>
+                    <li>...And many more!</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+</component>

@@ -182,12 +182,12 @@
             ]
         },
         {
-            "name": "yasm",
+            "name": "nasm",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz",
-                    "sha256": "3dce6601b495f5b3d45b59f7d2492a340ee7e84b5beca17e48f862502bd5603f"
+                    "url": "https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.xz",
+                    "sha256": "812ecfb0dcbc5bd409aaa8f61c7de94c5b8752a7b00c632883d15b2ed6452573"
                 }
             ],
             "cleanup": [
@@ -248,8 +248,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20160911-2245-stable.tar.bz2",
-                    "sha256": "5ccc61f489d738a4a70857fd2a17f351c234961cb4d1bc8da31da9a1ae18719e"
+                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20180407-2245-stable.tar.bz2",
+                    "sha256": "86ea8ecb515f1a6e67df4bba37345ea908a0ea7da587d4f74f8afb6c33642f2b"
                 },
                 {
                     "type": "patch",
@@ -330,8 +330,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ffmpeg.org/releases/ffmpeg-2.8.8.tar.xz",
-                    "sha256": "f94e2f71aacd1fdb1e28aac8cf36aa457c13b0fc9bf704b467d91489705d2199"
+                    "url": "https://www.ffmpeg.org/releases/ffmpeg-3.2.10.tar.xz",
+                    "sha256": "3c1626220c7b68ff6be7312559f77f3c65ff6809daf645d4470ac0189926bdbc"
                 }
             ],
             "cleanup": [
@@ -368,7 +368,9 @@
                 "/include",
                 "/lib/*.a",
                 "/lib/*.la",
-                "/lib/pkgconfig"
+                "/lib/pkgconfig",
+                "/share/info",
+                "/share/man"
             ]
         },
         {
@@ -412,8 +414,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/01org/tbb/archive/2018_U2.tar.gz",
-                    "sha256": "78bb9bae474736d213342f01fe1a6d00c6939d5c75b367e2e43e7bf29a6d8eca"
+                    "url": "https://github.com/01org/tbb/archive/2018_U3.tar.gz",
+                    "sha256": "23793c8645480148e9559df96b386b780f92194c80120acce79fcdaae0d81f45"
                 }
             ],
             "cleanup": [
@@ -462,40 +464,6 @@
             ]
         },
         {
-            "name": "openvdb",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DBLOSC_LOCATION=/app",
-                "-DGLFW3_INCLUDE_DIR=/app/include/GLFW",
-                "-DGLFW3_LOCATION=/app",
-                "-DUSE_GLFW3:BOOL=ON",
-                "-DILMBASE_LOCATION=/app",
-                "-DILMBASE_NAMESPACE_VERSIONING:BOOL=OFF",
-                "-DOPENEXR_LOCATION=/app",
-                "-DOPENEXR_NAMESPACE_VERSIONING:BOOL=OFF",
-                "-DTBB_LOCATION=/app",
-                "-DOPENVDB_BUILD_DOCS:BOOL=OFF",
-                "-DOPENVDB_BUILD_HOUDINI_SOPS:BOOL=OFF",
-                "-DOPENVDB_BUILD_MAYA_PLUGIN:BOOL=OFF",
-                "-DOPENVDB_BUILD_PYTHON_MODULE:BOOL=OFF",
-                "-DOPENVDB_BUILD_UNITTESTS:BOOL=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/dreamworksanimation/openvdb/archive/v4.0.2.tar.gz",
-                    "sha256": "7d995976cf124136b874d006496c37589f32de1b877ee7ccce626710823e8dbb"
-                }
-            ],
-            "cleanup": [
-                "/bin",
-                "/include",
-                "/lib/*.a"
-            ]
-        },
-        {
             "name": "jemalloc",
             "sources": [
                 {
@@ -509,7 +477,28 @@
                 "/include",
                 "/lib/*.a",
                 "/lib/pkgconfig",
-                "/share/doc"
+                "/share/doc",
+                "/share/man"
+            ]
+        },
+        {
+            "name": "openvdb",
+            "subdir": "openvdb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= PYTHON_VERSION= DOXYGEN= install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/dreamworksanimation/openvdb/archive/v3.1.0.tar.gz",
+                    "sha256": "b95a32f4f0195452a64870bda978999a719006a0c036b9ac985b466532d32d4b"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a"
             ]
         },
         {
@@ -526,8 +515,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/alembic/alembic/archive/1.7.5.tar.gz",
-                    "sha256": "ab0c727bfc4aedfe81c2365e604fb457056dc66909575ccfe19ed406e67c002e"
+                    "url": "https://github.com/alembic/alembic/archive/1.7.7.tar.gz",
+                    "sha256": "831b016afa9e66187b66819a02c0bd198b0f30e501a3552d0634796728cf1bff"
                 }
             ],
             "cleanup": [
@@ -543,8 +532,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2017.7.27.1.tar.gz",
-                    "sha256": "40523d2efb60523e113b44602298f0960e900388cf3bb6043f645cf57ea9e3f5"
+                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2018.1.18.tar.gz",
+                    "sha256": "edbc3f203427eef571f79a7692bb160a2b0f7ccaa31953e99bd17e307cf63f7d"
                 }
             ]
         },
@@ -557,12 +546,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/c/chardet/chardet-3.0.2.tar.gz",
-                    "sha256": "4f7832e7c583348a9eddd927ee8514b3bf717c061f57b21dbe7697211454d9bb"
-                },
-                {
-                    "type": "patch",
-                    "path": "chardet-do-not-require-pytest-runner.patch"
+                    "url": "https://files.pythonhosted.org/packages/source/c/chardet/chardet-3.0.4.tar.gz",
+                    "sha256": "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
                 }
             ],
             "cleanup": [
@@ -682,8 +667,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.79.tar.gz",
-                    "sha256": "a9de03e769a2a4a0bf92186556896c4f4d32fd9ac4480915ae92d7f95b25c899"
+                    "url": "https://download.blender.org/source/blender-2.79b.tar.gz",
+                    "sha256": "4c944c304a49e68ac687ea06f5758204def049b66dc211e1cffa1857716393bc"
                 },
                 {
                     "type": "file",
