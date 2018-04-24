@@ -40,12 +40,12 @@
         </screenshot>
     </screenshots>
     <releases>
-        <release version="2.79.b" date="2018-03-23">
+        <release version="2.79b" date="2018-03-23">
             <description>
                 <p>This is a maintenance release fixing many bugs.</p>
             </description>
         </release>
-        <release version="2.79.a" date="2018-02-27">
+        <release version="2.79a" date="2018-02-27">
             <description>
                 <p>This is a maintenance release fixing over 200 bugs.</p>
             </description>
