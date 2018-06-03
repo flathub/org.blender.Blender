@@ -627,7 +627,6 @@
                 "-DWITH_IMAGE_OPENJPEG:BOOL=ON",
                 "-DWITH_IMAGE_TIFF:BOOL=ON",
                 "-DWITH_INTERNATIONAL:BOOL=ON",
-                "-DWITH_JACK:BOOL=ON",
                 "-DWITH_LZMA:BOOL=ON",
                 "-DWITH_LZO:BOOL=ON",
                 "-DWITH_MOD_BOOLEAN:BOOL=ON",
