@@ -524,6 +524,20 @@
             ]
         },
         {
+            "name": "libspnav",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://downloads.sourceforge.net/project/spacenav/spacenav%20library%20%28SDK%29/libspnav%200.2.3/libspnav-0.2.3.tar.gz",
+		    "sha256": "7ae4d7bb7f6a5dda28b487891e01accc856311440f582299760dace6ee5f1f93"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/*.a"
+            ]
+        },
+        {
             "name": "certifi",
             "buildsystem": "simple",
             "build-commands": [
@@ -626,6 +640,7 @@
                 "-DWITH_IMAGE_OPENEXR:BOOL=ON",
                 "-DWITH_IMAGE_OPENJPEG:BOOL=ON",
                 "-DWITH_IMAGE_TIFF:BOOL=ON",
+                "-DWITH_INPUT_NDOF:BOOL=ON",
                 "-DWITH_INTERNATIONAL:BOOL=ON",
                 "-DWITH_LZMA:BOOL=ON",
                 "-DWITH_LZO:BOOL=ON",
@@ -654,7 +669,6 @@
                 /* Changed from upstream official builds */
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DWITH_DOC_MANPAGE:BOOL=OFF",
-                "-DWITH_INPUT_NDOF:BOOL=OFF",
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
                 "-DWITH_JACK:BOOL=OFF",
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF"
