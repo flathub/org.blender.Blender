@@ -667,6 +667,14 @@
                 {
                     "type": "patch",
                     "path": "blender-Find-libcuda.so.1.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "0001-Added-extra-const-to-satisfy-the-strict-clang-versio.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "0001-Cycles-Fix-bad-register-cast-in-sseb.patch"
                 }
             ],
             "post-install": [
