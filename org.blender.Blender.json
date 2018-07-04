@@ -167,7 +167,9 @@
                 "-DOIIO_BUILD_TOOLS:BOOL=OFF",
                 "-DOIIO_BUILD_TESTS:BOOL=OFF",
                 "-DBUILDSTATIC:BOOL=OFF",
-                "-DINSTALL_DOCS:BOOL=OFF"
+                "-DINSTALL_DOCS:BOOL=OFF",
+                /* Required with recent GCC */
+                "-DSTOP_ON_WARNING:BOOL=OFF"
             ],
             "builddir": true,
             "sources": [
