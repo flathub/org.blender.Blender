@@ -645,7 +645,8 @@
                 "-DWITH_INPUT_NDOF:BOOL=OFF",
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
                 "-DWITH_JACK:BOOL=OFF",
-                "-DWITH_PYTHON_INSTALL:BOOL=OFF"
+                "-DWITH_PYTHON_INSTALL:BOOL=OFF",
+                "-DPYTHON_VERSION=3.7"
             ],
             "builddir": true,
             "build-options": {
