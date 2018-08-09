@@ -33,9 +33,9 @@
             ],
             "cleanup": [
                 "/bin",
-                "/lib/python3.5/site-packages/numpy/core/lib/libnpymath.a",
-                "/lib/python3.5/site-packages/numpy/tests",
-                "/lib/python3.5/site-packages/numpy/*/tests"
+                "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
+                "/lib/python3.*/site-packages/numpy/tests",
+                "/lib/python3.*/site-packages/numpy/*/tests"
             ]
         },
         {
