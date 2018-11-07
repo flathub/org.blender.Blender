@@ -368,6 +368,7 @@
                 "/include",
                 "/lib/*.a",
                 "/lib/*.la",
+                "/lib/cmake",
                 "/lib/pkgconfig",
                 "/share/info",
                 "/share/man"
@@ -460,6 +461,7 @@
             ],
             "cleanup": [
                 "/include",
+                "/lib/cmake",
                 "/lib/pkgconfig"
             ]
         },
@@ -520,7 +522,8 @@
                 }
             ],
             "cleanup": [
-                "/include"
+                "/include",
+                "/lib/cmake"
             ]
         },
         {
