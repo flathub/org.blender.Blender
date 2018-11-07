@@ -60,14 +60,6 @@
         {
             "name": "opencolorio",
             "buildsystem": "cmake",
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DOCIO_BUILD_APPS:BOOL=OFF",
-                "-DOCIO_BUILD_DOCS:BOOL=OFF",
-                "-DOCIO_BUILD_STATIC:BOOL=OFF",
-                "-DOCIO_BUILD_TESTS:BOOL=OFF",
-                "-DPYTHON=/usr/bin/python3"
-            ],
             "builddir": true,
             "build-options" : {
                 "arch" : {
@@ -83,6 +75,14 @@
                     }
                 }
             },
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DOCIO_BUILD_APPS:BOOL=OFF",
+                "-DOCIO_BUILD_DOCS:BOOL=OFF",
+                "-DOCIO_BUILD_STATIC:BOOL=OFF",
+                "-DOCIO_BUILD_TESTS:BOOL=OFF",
+                "-DPYTHON=/usr/bin/python3"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -98,15 +98,15 @@
         },
         {
             "name": "ilmbase",
-            "config-opts": [
-                "--enable-shared",
-                "--disable-static"
-            ],
             "build-options": {
                 "env": {
                     "LDFLAGS": "-lpthread"
                 }
             },
+            "config-opts": [
+                "--enable-shared",
+                "--disable-static"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -163,13 +163,13 @@
         {
             "name": "openimageio",
             "buildsystem": "cmake-ninja",
+            "builddir": true,
             "config-opts": [
                 "-DOIIO_BUILD_TOOLS:BOOL=OFF",
                 "-DOIIO_BUILD_TESTS:BOOL=OFF",
                 "-DBUILDSTATIC:BOOL=OFF",
                 "-DINSTALL_DOCS:BOOL=OFF"
             ],
-            "builddir": true,
             "sources": [
                 {
                     "type": "archive",
@@ -341,11 +341,6 @@
         },
         {
             "name": "fftw",
-            "config-opts": [
-                "--enable-shared",
-                "--enable-threads",
-                "--enable-openmp"
-            ],
             "build-options" : {
                 "arch" : {
                     "x86_64" : {
@@ -356,6 +351,11 @@
                     }
                 }
             },
+            "config-opts": [
+                "--enable-shared",
+                "--enable-threads",
+                "--enable-openmp"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -602,6 +602,10 @@
         {
             "name": "blender",
             "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "build-options": {
+                "cxxflags": "-DOPENVDB_3_ABI_COMPATIBLE"
+            },
             "config-opts": [
                 /* Same as upstream official builds */
                 "-DWITH_ALEMBIC:BOOL=ON",
@@ -663,10 +667,10 @@
                 "-DWITH_JACK:BOOL=OFF",
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF"
             ],
-            "builddir": true,
-            "build-options": {
-                "cxxflags": "-DOPENVDB_3_ABI_COMPATIBLE"
-            },
+            "post-install": [
+                "mkdir -p /app/share/appdata",
+                "install -m644 -p ../org.blender.Blender.appdata.xml /app/share/appdata/"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -681,10 +685,6 @@
                     "type": "patch",
                     "path": "blender-Find-libcuda.so.1.patch"
                 }
-            ],
-            "post-install": [
-                "mkdir -p /app/share/appdata",
-                "install -m644 -p ../org.blender.Blender.appdata.xml /app/share/appdata/"
             ],
             "cleanup": [
                 "/share/doc"
