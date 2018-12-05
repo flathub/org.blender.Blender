@@ -15,7 +15,7 @@
         </p>
 
         <p>
-            Advanced users can employ Blender’s API for Python scripting to
+            Advanced users employ Blender’s API for Python scripting to
             customize the application and write specialized tools. Blender is
             well suited to individuals and small studios who benefit from its
             unified pipeline and responsive development process.
@@ -40,6 +40,24 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="2.80~beta" type="development" date="2019-02-19">
+            <description>
+                <p>
+                    No other release of Blender has been met with so much anticipation! It’s the
+                    accumulation of 3 years of time and hundreds of months of work by developers
+                    from the Blender community.
+                </p>
+                <p>
+                    The Blender team decided to tackle workflow; not only by improving UI
+                    configurations and layouts, but especially by bringing back 3D tools and
+                    editing where it belongs – in 3D space. Everything should be real-time and
+                    interactive, whether you make photorealistic environments or cartoon animation.
+                </p>
+                <p>
+                    More information at https://www.blender.org/2-8/
+                </p>
+            </description>
+        </release>
         <release version="2.79b" date="2018-03-23">
             <description>
                 <p>This is a maintenance release fixing many bugs.</p>
