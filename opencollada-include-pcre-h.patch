@@ -1,0 +1,34 @@
+From 0255ea892aae308e1f5ce207e754fd0735ea7475 Mon Sep 17 00:00:00 2001
+From: Dennis Schridde <devurandom@gmx.net>
+Date: Wed, 7 Nov 2018 01:24:29 +0100
+Subject: [PATCH] COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h:
+ Include pcre.h
+
+This fixes a compilation error with libpcre-8.42:
+```
+error: conflicting declaration 'typedef struct real_pcre8_or_16 pcre'
+```
+
+Closes: #547
+Closes: #570
+---
+ COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h b/COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h
+index 22f2598b..e44e33c8 100644
+--- a/COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h
++++ b/COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h
+@@ -13,8 +13,7 @@
+ 
+ #include "COLLADABUPrerequisites.h"
+ 
+-struct real_pcre;
+-typedef struct real_pcre pcre;
++#include <pcre.h>
+ 
+ 
+ namespace COLLADABU
+-- 
+2.17.2
+
