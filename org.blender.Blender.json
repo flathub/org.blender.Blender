@@ -380,8 +380,8 @@
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DUSE_EXPAT=OFF",
-                "-DUSE_STATIC=ON"
+                "-DUSE_EXPAT:BOOL=OFF",
+                "-DUSE_STATIC:BOOL=ON"
             ],
             "sources": [
                 {
