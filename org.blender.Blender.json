@@ -616,7 +616,7 @@
                 {
                     "type": "git",
                     "url": "https://git.blender.org/blender.git",
-                    "branch": "ec57d76db81a4d0c32b50ccc8772eb7d632f4f54"
+                    "branch": "38673621a44cc8f321aee7dc7ec203adb65e0029"
                 },
                 {
                     "type": "file",
