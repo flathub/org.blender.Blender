@@ -203,6 +203,30 @@
             ]
         },
         {
+            "name": "opensubdiv",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DGLEW_LOCATION=/app",
+                "-DNO_EXAMPLES=1",
+                "-DNO_TUTORIALS=1",
+                "-DNO_PTEX=1",
+                "-DNO_DOC=1"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv.git",
+                    "branch": "v3_3_3"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/bin",
+                "/share"
+            ]
+        },
+        {
             "name": "x264",
             "config-opts": [
                 "--enable-shared",
