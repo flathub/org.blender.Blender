@@ -203,6 +203,31 @@
             ]
         },
         {
+            "name": "opensubdiv",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DGLEW_LOCATION=/app",
+                "-DNO_EXAMPLES=1",
+                "-DNO_TUTORIALS=1",
+                "-DNO_PTEX=1",
+                "-DNO_DOC=1"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_3_3.tar.gz",
+                    "sha256": "2dc81b3a085e692cca3166ac88751e4674a9ddf5b5d7935adf677bb2bd3f2d2f"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/bin",
+                "/share"
+            ]
+        },
+        {
             "name": "x264",
             "config-opts": [
                 "--enable-shared",
