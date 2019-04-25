@@ -25,6 +25,9 @@
     <url type="help">https://www.blender.org/support/</url>
     <url type="bugtracker">https://developer.blender.org</url>
     <url type="donation">https://www.blender.org/foundation/donation-payment/</url>
+    <provides>
+        <id>blender.desktop</id>
+    </provides>
     <screenshots>
         <screenshot type="default">
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_1.jpg</image>
