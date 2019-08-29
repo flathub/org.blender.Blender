@@ -96,7 +96,7 @@
                 }
             ],
             "cleanup": [
-                "/*.cmake",
+                "/cmake",
                 "/include",
                 "/lib/pkgconfig",
                 "/share"
