@@ -224,6 +224,7 @@
             "cleanup": [
                 "/bin",
                 "/include",
+                "/lib/*.a",
                 "/share"
             ]
         },
