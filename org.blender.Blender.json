@@ -185,6 +185,7 @@
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DBUILD_CODEC:BOOL=OFF",
                 "-DBUILD_DOC:BOOL=OFF",
+                "-DBUILD_STATIC_LIBS:BOOL=OFF",
                 "-DBUILD_TESTING:BOOL=OFF"
             ],
             "sources": [
@@ -221,8 +222,9 @@
                 }
             ],
             "cleanup": [
-                "/include",
                 "/bin",
+                "/include",
+                "/lib/*.a",
                 "/share"
             ]
         },
