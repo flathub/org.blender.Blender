@@ -32,6 +32,7 @@
             ],
             "cleanup": [
                 "/bin",
+                "/lib/python3.7/site-packages/numpy/core/include",
                 "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
                 "/lib/python3.*/site-packages/numpy/tests",
                 "/lib/python3.*/site-packages/numpy/*/tests"
