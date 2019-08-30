@@ -147,7 +147,8 @@
                 "/include",
                 "/lib/*.la",
                 "/lib/pkgconfig",
-                "/share/aclocal"
+                "/share/aclocal",
+                "/share/doc"
             ]
         },
         {
