@@ -621,6 +621,7 @@
                 }
             ],
             "cleanup": [
+                "/bin/blender-thumbnailer.py",
                 "/share/blender/2.80/scripts/addons/cycles/source",
                 "/share/doc"
             ]
