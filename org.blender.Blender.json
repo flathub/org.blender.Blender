@@ -620,6 +620,7 @@
                 }
             ],
             "cleanup": [
+                "/share/blender/2.80/scripts/addons/cycles/source",
                 "/share/doc"
             ]
         }
