@@ -395,7 +395,8 @@
             ],
             "cleanup": [
                 "/include",
-                "/lib/*.a"
+                "/lib/*.a",
+                "/lib/pkgconfig"
             ]
         },
         {
