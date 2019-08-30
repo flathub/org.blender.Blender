@@ -32,6 +32,7 @@
             ],
             "cleanup": [
                 "/bin",
+                "/lib/python3.7/site-packages/numpy/core/include",
                 "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
                 "/lib/python3.*/site-packages/numpy/tests",
                 "/lib/python3.*/site-packages/numpy/*/tests"
@@ -95,7 +96,7 @@
                 }
             ],
             "cleanup": [
-                "/*.cmake",
+                "/cmake",
                 "/include",
                 "/lib/pkgconfig",
                 "/share"
@@ -146,7 +147,8 @@
                 "/include",
                 "/lib/*.la",
                 "/lib/pkgconfig",
-                "/share/aclocal"
+                "/share/aclocal",
+                "/share/doc"
             ]
         },
         {
@@ -320,7 +322,8 @@
             ],
             "cleanup": [
                 "/include",
-                "/lib/pkgconfig"
+                "/lib/pkgconfig",
+                "/share/ffmpeg"
             ]
         },
         {
@@ -392,7 +395,8 @@
             ],
             "cleanup": [
                 "/include",
-                "/lib/*.a"
+                "/lib/*.a",
+                "/lib/pkgconfig"
             ]
         },
         {
@@ -616,6 +620,7 @@
                 }
             ],
             "cleanup": [
+                "/share/blender/2.80/scripts/addons/cycles/source",
                 "/share/doc"
             ]
         }
