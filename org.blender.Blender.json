@@ -322,7 +322,8 @@
             ],
             "cleanup": [
                 "/include",
-                "/lib/pkgconfig"
+                "/lib/pkgconfig",
+                "/share/ffmpeg"
             ]
         },
         {
