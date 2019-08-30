@@ -200,7 +200,7 @@
             ],
             "cleanup": [
                 "/include",
-                "/lib/openjpeg-1.5",
+                "/lib/openjpeg-2.3",
                 "/lib/pkgconfig",
                 "/share"
             ]
