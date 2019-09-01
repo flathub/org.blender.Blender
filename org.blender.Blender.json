@@ -96,6 +96,7 @@
                 }
             ],
             "cleanup": [
+                "/*.cmake",
                 "/cmake",
                 "/include",
                 "/lib/pkgconfig",
@@ -199,7 +200,7 @@
             ],
             "cleanup": [
                 "/include",
-                "/lib/openjpeg-1.5",
+                "/lib/openjpeg-2.3",
                 "/lib/pkgconfig",
                 "/share"
             ]
@@ -620,6 +621,7 @@
                 }
             ],
             "cleanup": [
+                "/bin/blender-thumbnailer.py",
                 "/share/blender/2.80/scripts/addons/cycles/source",
                 "/share/doc"
             ]
