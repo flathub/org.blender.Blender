@@ -1,8 +1,9 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "18.08",
+    "runtime-version": "19.08",
     "sdk": "org.freedesktop.Sdk",
+    "branch": "beta",
     "command": "blender",
     "rename-desktop-file": "blender.desktop",
     "rename-icon": "blender",
@@ -611,9 +612,9 @@
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.80.tar.gz",
-                    "sha256": "cd9d7e505c1f6e63a4f72366ed04d446859977eeb34cde21283aaea6a304a5c0"
+                    "type": "git",
+                    "url": "git://git.blender.org/blender.git",
+                    "commit": "62ffc0c2c94ca17ab1985d8ddd0ad06674b6f838"
                 },
                 {
                     "type": "file",
