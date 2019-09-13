@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "18.08",
+    "runtime-version": "19.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "rename-desktop-file": "blender.desktop",
