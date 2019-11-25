@@ -18,24 +18,70 @@
         "shared-modules/glu/glu-9.json",
         "shared-modules/glew/glew.json",
         {
-            "name": "numpy",
-            "buildsystem": "simple",
-            "build-commands": [
-                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
+            "name": "openjpeg",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_CODEC:BOOL=OFF",
+                "-DBUILD_DOC:BOOL=OFF",
+                "-DBUILD_STATIC_LIBS:BOOL=OFF",
+                "-DBUILD_TESTING:BOOL=OFF"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.15.4.zip",
-                    "sha256": "3d734559db35aa3697dadcea492a423118c5c55d176da2f3be9c98d4803fc2a7"
+                    "url": "https://github.com/uclouvain/openjpeg/archive/v2.3.1.tar.gz",
+                    "sha256": "63f5a4713ecafc86de51bfad89cc07bb788e9bba24ebbf0c4ca637621aadb6a9"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/openjpeg-2.3",
+                "/lib/pkgconfig",
+                "/share"
+            ]
+        },
+        {
+            "name": "jemalloc",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.0/jemalloc-5.2.0.tar.bz2",
+                    "sha256": "74be9f44a60d2a99398e706baa921e4efde82bf8fd16e5c0643c375c5851e3b4"
                 }
             ],
             "cleanup": [
                 "/bin",
-                "/lib/python3.7/site-packages/numpy/core/include",
-                "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
-                "/lib/python3.*/site-packages/numpy/tests",
-                "/lib/python3.*/site-packages/numpy/*/tests"
+                "/include",
+                "/lib/*.a",
+                "/lib/pkgconfig",
+                "/share/doc",
+                "/share/man"
+            ]
+        },
+        {
+            "name": "tbb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make tbb tbbmalloc tbbproxy",
+                "install -p -D -m755 build/linux_*_release/libtbb.so.2 /app/lib/libtbb.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbb.so",
+                "install -p -D -m755 build/linux_*_release/libtbbmalloc.so.2 /app/lib/libtbbmalloc.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbbmalloc.so",
+                "install -p -D -m755 build/linux_*_release/libtbbmalloc_proxy.so.2 /app/lib/libtbbmalloc_proxy.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbbmalloc_proxy.so",
+                "cp -dR --preserve=mode,timestamp include/tbb /app/include/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/01org/tbb/archive/2019_U8.tar.gz",
+                    "sha256": "7b1fd8caea14be72ae4175896510bf99c809cd7031306a1917565e6de7382fba"
+                }
+            ],
+            "cleanup": [
+                "/include"
             ]
         },
         {
@@ -162,8 +208,6 @@
                 "-DBUILDSTATIC:BOOL=OFF",
                 "-DINSTALL_DOCS:BOOL=OFF",
                 "-DOpenGL_GL_PREFERENCE:STRING=GLVND",
-
-                /* Upstream Blender releases bundle OpenImageIO built with these options */
                 "-DUSE_QT:BOOL=OFF",
                 "-DUSE_PYTHON:BOOL=OFF",
                 "-DUSE_FFMPEG:BOOL=OFF",
@@ -178,31 +222,6 @@
             ],
             "cleanup": [
                 "/include"
-            ]
-        },
-        {
-            "name": "openjpeg",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DBUILD_CODEC:BOOL=OFF",
-                "-DBUILD_DOC:BOOL=OFF",
-                "-DBUILD_STATIC_LIBS:BOOL=OFF",
-                "-DBUILD_TESTING:BOOL=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/uclouvain/openjpeg/archive/v2.3.1.tar.gz",
-                    "sha256": "63f5a4713ecafc86de51bfad89cc07bb788e9bba24ebbf0c4ca637621aadb6a9"
-                }
-            ],
-            "cleanup": [
-                "/include",
-                "/lib/openjpeg-2.3",
-                "/lib/pkgconfig",
-                "/share"
             ]
         },
         {
@@ -229,6 +248,106 @@
                 "/include",
                 "/lib/*.a",
                 "/share"
+            ]
+        },
+        {
+            "name": "blosc",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_BENCHMARKS:BOOL=OFF",
+                "-DBUILD_STATIC:BOOL=OFF",
+                "-DBUILD_TESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/Blosc/c-blosc/archive/v1.14.4.tar.gz",
+                    "sha256": "42a85de871d142cdc89b607a90cceeb0eab60d995f6fae8d44aae397ab414002"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/*.a",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "openvdb",
+            "subdir": "openvdb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= GLFW_INCL_DIR= PYTHON_VERSION= DOXYGEN= install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/v5.1.0.tar.gz",
+                    "sha256": "eb5a8011732bcdeb115de9a38f640ee376bcb85b54e060d3b1ab08f9dc92f40b"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a"
+            ]
+        },
+        {
+            "name": "alembic",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DUSE_ARNOLD:BOOL=OFF",
+                "-DUSE_BINARIES:BOOL=OFF",
+                "-DUSE_EXAMPLES:BOOL=OFF",
+                "-DUSE_HDF5:BOOL=OFF",
+                "-DUSE_MAYA:BOOL=OFF",
+                "-DUSE_PRMAN:BOOL=OFF",
+                "-DUSE_PYALEMBIC:BOOL=OFF",
+                "-DUSE_STATIC_HDF5:BOOL=OFF",
+                "-DUSE_TESTS:BOOL=OFF",
+                "-DALEMBIC_ILMBASE_LINK_STATIC:BOOL=OFF",
+                "-DALEMBIC_SHARED_LIBS:BOOL=OFF",
+                "-DALEMBIC_SHARED_LIBS:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/alembic/alembic/archive/1.7.11.tar.gz",
+                    "sha256": "fa3536b48e49c99915170d62907490ed0ea44259b932883626630f3cedd0a0bb"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake"
+            ]
+        },
+        {
+            "name": "opencollada",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DUSE_EXPAT:BOOL=OFF",
+                "-DUSE_LIBXML:BOOL=ON",
+                "-DUSE_STATIC:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/v1.6.68.tar.gz",
+                    "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b"
+                },
+                {
+                    "type": "patch",
+                    "path": "opencollada-include-pcre-h.patch"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/opencollada"
             ]
         },
         {
@@ -328,145 +447,24 @@
             ]
         },
         {
-            "name": "opencollada",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DUSE_EXPAT:BOOL=OFF",
-                "-DUSE_LIBXML:BOOL=ON",
-                "-DUSE_STATIC:BOOL=ON"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/v1.6.68.tar.gz",
-                    "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b"
-                },
-                {
-                    "type": "patch",
-                    "path": "opencollada-include-pcre-h.patch"
-                }
-            ],
-            "cleanup": [
-                "/include",
-                "/lib/opencollada"
-            ]
-        },
-        {
-            "name": "tbb",
+            "name": "numpy",
             "buildsystem": "simple",
             "build-commands": [
-                "make tbb tbbmalloc tbbproxy",
-                "install -p -D -m755 build/linux_*_release/libtbb.so.2 /app/lib/libtbb.so.2",
-                "ln -s libtbb.so.2 /app/lib/libtbb.so",
-                "install -p -D -m755 build/linux_*_release/libtbbmalloc.so.2 /app/lib/libtbbmalloc.so.2",
-                "ln -s libtbb.so.2 /app/lib/libtbbmalloc.so",
-                "install -p -D -m755 build/linux_*_release/libtbbmalloc_proxy.so.2 /app/lib/libtbbmalloc_proxy.so.2",
-                "ln -s libtbb.so.2 /app/lib/libtbbmalloc_proxy.so",
-                "cp -dR --preserve=mode,timestamp include/tbb /app/include/"
+                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/01org/tbb/archive/2019_U8.tar.gz",
-                    "sha256": "7b1fd8caea14be72ae4175896510bf99c809cd7031306a1917565e6de7382fba"
-                }
-            ],
-            "cleanup": [
-                "/include"
-            ]
-        },
-        {
-            "name": "blosc",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DBUILD_BENCHMARKS:BOOL=OFF",
-                "-DBUILD_STATIC:BOOL=OFF",
-                "-DBUILD_TESTS:BOOL=OFF"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/Blosc/c-blosc/archive/v1.14.4.tar.gz",
-                    "sha256": "42a85de871d142cdc89b607a90cceeb0eab60d995f6fae8d44aae397ab414002"
-                }
-            ],
-            "cleanup": [
-                "/include",
-                "/lib/*.a",
-                "/lib/pkgconfig"
-            ]
-        },
-        {
-            "name": "jemalloc",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.0/jemalloc-5.2.0.tar.bz2",
-                    "sha256": "74be9f44a60d2a99398e706baa921e4efde82bf8fd16e5c0643c375c5851e3b4"
+                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.15.4.zip",
+                    "sha256": "3d734559db35aa3697dadcea492a423118c5c55d176da2f3be9c98d4803fc2a7"
                 }
             ],
             "cleanup": [
                 "/bin",
-                "/include",
-                "/lib/*.a",
-                "/lib/pkgconfig",
-                "/share/doc",
-                "/share/man"
-            ]
-        },
-        {
-            "name": "openvdb",
-            "subdir": "openvdb",
-            "buildsystem": "simple",
-            "build-commands": [
-                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= GLFW_INCL_DIR= PYTHON_VERSION= DOXYGEN= install"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/v5.1.0.tar.gz",
-                    "sha256": "eb5a8011732bcdeb115de9a38f640ee376bcb85b54e060d3b1ab08f9dc92f40b"
-                }
-            ],
-            "cleanup": [
-                "/bin",
-                "/include",
-                "/lib/*.a"
-            ]
-        },
-        {
-            "name": "alembic",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DUSE_ARNOLD:BOOL=OFF",
-                "-DUSE_BINARIES:BOOL=OFF",
-                "-DUSE_EXAMPLES:BOOL=OFF",
-                "-DUSE_HDF5:BOOL=OFF",
-                "-DUSE_MAYA:BOOL=OFF",
-                "-DUSE_PRMAN:BOOL=OFF",
-                "-DUSE_PYALEMBIC:BOOL=OFF",
-                "-DUSE_STATIC_HDF5:BOOL=OFF",
-                "-DUSE_TESTS:BOOL=OFF",
-                "-DALEMBIC_ILMBASE_LINK_STATIC:BOOL=OFF",
-                "-DALEMBIC_SHARED_LIBS:BOOL=OFF",
-                "-DALEMBIC_SHARED_LIBS:BOOL=ON"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/alembic/alembic/archive/1.7.11.tar.gz",
-                    "sha256": "fa3536b48e49c99915170d62907490ed0ea44259b932883626630f3cedd0a0bb"
-                }
-            ],
-            "cleanup": [
-                "/include",
-                "/lib/cmake"
+                "/lib/python3.*/site-packages/numpy/core/include",
+                "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
+                "/lib/python3.*/site-packages/numpy/tests",
+                "/lib/python3.*/site-packages/numpy/*/tests"
             ]
         },
         {
