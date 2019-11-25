@@ -44,11 +44,15 @@
         },
         {
             "name": "jemalloc",
+            "config-opts": [
+                "--disable-documentation",
+                "--disable-static"
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.0/jemalloc-5.2.0.tar.bz2",
-                    "sha256": "74be9f44a60d2a99398e706baa921e4efde82bf8fd16e5c0643c375c5851e3b4"
+                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2",
+                    "sha256": "34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6"
                 }
             ],
             "cleanup": [
@@ -76,8 +80,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/01org/tbb/archive/2019_U8.tar.gz",
-                    "sha256": "7b1fd8caea14be72ae4175896510bf99c809cd7031306a1917565e6de7382fba"
+                    "url": "https://github.com/01org/tbb/archive/2019_U9.tar.gz",
+                    "sha256": "15652f5328cf00c576f065e5cd3eaf3317422fe82afb67a9bcec0dc065bd2abe"
                 }
             ],
             "cleanup": [
@@ -150,49 +154,30 @@
             ]
         },
         {
-            "name": "ilmbase",
-            "build-options": {
-                "env": {
-                    "LDFLAGS": "-lpthread"
-                }
-            },
-            "config-opts": [
-                "--enable-shared",
-                "--disable-static"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://github.com/openexr/openexr/releases/download/v2.3.0/ilmbase-2.3.0.tar.gz",
-                    "sha256": "456978d1a978a5f823c7c675f3f36b0ae14dba36638aeaa3c4b0e784f12a3862"
-                }
-            ],
-            "cleanup": [
-                "/include/OpenEXR",
-                "/lib/libHalf.la",
-                "/lib/libIex*.la",
-                "/lib/libIlm*.la",
-                "/lib/libImath*.la",
-                "/lib/pkgconfig/IlmBase.pc"
-            ]
-        },
-        {
             "name": "openexr",
+            "buildsystem": "cmake",
+            "builddir": true,
             "config-opts": [
-                "--enable-shared",
-                "--disable-static"
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS:BOOL=ON",
+                "-DILMBASE_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
+                "-DOPENEXR_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
+                "-DBUILD_TESTING:BOOL=OFF",
+                "-DNAMESPACE_VERSIONING:BOOL=OFF",
+                "-DPYILMBASE_ENABLE:BOOL=OFF"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/openexr/openexr/releases/download/v2.3.0/openexr-2.3.0.tar.gz",
-                    "sha256": "fd6cb3a87f8c1a233be17b94c74799e6241d50fc5efd4df75c7a4b9cf4e25ea6"
+                    "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v2.4.0.tar.gz",
+                    "sha256": "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1"
                 }
             ],
             "cleanup": [
                 "/bin",
                 "/include",
                 "/lib/*.la",
+                "/lib/cmake",
                 "/lib/pkgconfig",
                 "/share/aclocal",
                 "/share/doc"
@@ -315,8 +300,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/alembic/alembic/archive/1.7.11.tar.gz",
-                    "sha256": "fa3536b48e49c99915170d62907490ed0ea44259b932883626630f3cedd0a0bb"
+                    "url": "https://github.com/alembic/alembic/archive/1.7.12.tar.gz",
+                    "sha256": "6c603b87c9a3eaa13618e577dd9ef5277018cdcd09ac82d3c196ad8bed6a1b48"
                 }
             ],
             "cleanup": [
@@ -351,6 +336,34 @@
             ]
         },
         {
+            "name": "openimagedenoise",
+            "only-arches": [
+                "x86_64"
+            ],
+            "buildsystem": "cmake",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DOIDN_STATIC_LIB:BOOL=ON",
+                "-DMKLDNN_BUILD_EXAMPLES:BOOL=OFF",
+                "-DMKLDNN_BUILD_TESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/OpenImageDenoise/oidn/releases/download/v1.1.0/oidn-1.1.0.src.tar.gz",
+                    "sha256": "4dd484abea8a0b3d12d346343fcb1ab7abef8f94318d8c537f69a20c2a75c4eb"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a",
+                "/lib/cmake",
+                "/share/doc"
+            ]
+        },
+        {
             "name": "x264",
             "config-opts": [
                 "--enable-shared",
@@ -359,8 +372,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20190730-2245-stable.tar.bz2",
-                    "sha256": "954371ae1ce18bee2227a88f860afead2da1bc18522c646b5dc18e74d6452288"
+                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20191124-2245-stable.tar.bz2",
+                    "sha256": "1916a76a29c2d2c177a5f6fbf5c84f4b18326ef3babb2795215f7a5a2a801ff7"
                 }
             ],
             "cleanup": [
@@ -436,8 +449,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.ffmpeg.org/releases/ffmpeg-4.0.4.tar.xz",
-                    "sha256": "fe3421c894cbb6cca223926505b99159c8dabc8de71d0d919dcd11a933aa1122"
+                    "url": "https://www.ffmpeg.org/releases/ffmpeg-4.0.5.tar.xz",
+                    "sha256": "13f258aa54e181cb3c49e35c12ab842f05e3b1d1588100567b2e53ebb0ef3972"
                 }
             ],
             "cleanup": [
@@ -455,8 +468,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.15.4.zip",
-                    "sha256": "3d734559db35aa3697dadcea492a423118c5c55d176da2f3be9c98d4803fc2a7"
+                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.17.4.zip",
+                    "sha256": "f58913e9227400f1395c7b800503ebfdb0772f1c33ff8cb4d6451c06cabdf316"
                 }
             ],
             "cleanup": [
@@ -476,8 +489,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2019.6.16.tar.gz",
-                    "sha256": "945e3ba63a0b9f577b1395204e13c3a231f9bc0223888be653286534e5873695"
+                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2019.9.11.tar.gz",
+                    "sha256": "e4f3620cfea4f83eedc95b24abd9cd56f3c4b146dd0177e83a21b4eb49e21e50"
                 }
             ]
         },
@@ -521,8 +534,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/u/urllib3/urllib3-1.25.3.tar.gz",
-                    "sha256": "dbe59173209418ae49d485b87d1681aefa36252ee85884c31346debd19463232"
+                    "url": "https://files.pythonhosted.org/packages/source/u/urllib3/urllib3-1.25.7.tar.gz",
+                    "sha256": "f3c5fd51747d450d4dcf6f923c81f78f811aab8205fda64b0aba34a4e48b0745"
                 }
             ]
         },
@@ -581,18 +594,22 @@
                 "-DWITH_OPENAL:BOOL=ON",
                 "-DWITH_OPENCOLLADA:BOOL=ON",
                 "-DWITH_OPENCOLORIO:BOOL=ON",
+                "-DWITH_OPENIMAGEDENOISE:BOOL=ON",
                 "-DWITH_OPENMP:BOOL=ON",
                 "-DWITH_OPENSUBDIV:BOOL=ON",
                 "-DWITH_OPENVDB:BOOL=ON",
                 "-DWITH_OPENVDB_BLOSC:BOOL=ON",
+                "-DWITH_QUADRIFLOW:BOOL=ON",
                 "-DWITH_RAYOPTIMIZATION:BOOL=ON",
                 "-DWITH_SDL:BOOL=ON",
+                "-DWITH_TBB:BOOL=ON",
                 "-DWITH_X11_XINPUT:BOOL=ON",
                 "-DWITH_X11_XF86VMODE:BOOL=ON",
                 "-DWITH_MEM_JEMALLOC:BOOL=ON",
                 "-DWITH_CYCLES_CUDA_BINARIES:BOOL=ON",
                 "-DWITH_CYCLES_CUBIN_COMPILER:BOOL=OFF",
                 "-DCYCLES_CUDA_BINARIES_ARCH:STRING=sm_30;sm_35;sm_37;sm_50;sm_52;sm_60;sm_61;sm_70;sm_75",
+                "-DWITH_CYCLES_DEVICE_OPTIX:BOOL=ON",
 
                 /* Changed from upstream official builds */
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
@@ -610,8 +627,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.80.tar.gz",
-                    "sha256": "cd9d7e505c1f6e63a4f72366ed04d446859977eeb34cde21283aaea6a304a5c0"
+                    "url": "https://download.blender.org/source/blender-2.81.tar.xz",
+                    "sha256": "ca429da7bf0f1e9ce39c915288cfa2b76ed7ec36885139c4d7c18912840337df"
                 },
                 {
                     "type": "file",
@@ -620,7 +637,7 @@
             ],
             "cleanup": [
                 "/bin/blender-thumbnailer.py",
-                "/share/blender/2.80/scripts/addons/cycles/source",
+                "/share/blender/*/scripts/addons/cycles/source",
                 "/share/doc"
             ]
         }
