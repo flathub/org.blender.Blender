@@ -15,6 +15,12 @@
         "--filesystem=host"
     ],
     "add-extensions": {
+        "org.blender.Blender.Codecs": {
+            "directory": "lib/codecs",
+            "add-ld-path": "lib",
+            "bundle" : true,
+            "autodelete" : true
+        },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
             "version": "19.08",
@@ -352,6 +358,7 @@
         {
             "name": "x264",
             "config-opts": [
+                "--prefix=/app/lib/codecs",
                 "--enable-shared",
                 "--disable-cli"
             ],
@@ -363,13 +370,20 @@
                 }
             ],
             "cleanup": [
-                "/include",
-                "/lib/pkgconfig"
+                "/lib/codecs/include",
+                "/lib/codecs/lib/pkgconfig"
             ]
         },
         {
             "name": "ffmpeg",
+            "build-options" : {
+                "env": {
+                    "PKG_CONFIG_PATH": "/app/lib/codecs/lib/pkgconfig"
+                }
+            },
             "config-opts": [
+                "--prefix=/app/lib/codecs",
+
                 "--enable-shared",
                 "--disable-static",
                 "--disable-doc",
@@ -440,9 +454,9 @@
                 }
             ],
             "cleanup": [
-                "/include",
-                "/lib/pkgconfig",
-                "/share/ffmpeg"
+                "/lib/codecs/include",
+                "/lib/codecs/lib/pkgconfig",
+                "/lib/codecs/share"
             ]
         },
         {
