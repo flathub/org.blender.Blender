@@ -358,8 +358,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20191124-2245-stable.tar.bz2",
-                    "sha256": "1916a76a29c2d2c177a5f6fbf5c84f4b18326ef3babb2795215f7a5a2a801ff7"
+                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20191217-2245-stable.tar.bz2",
+                    "sha256": "b2495c8f2930167d470994b1ce02b0f4bfb24b3317ba36ba7f112e9809264160"
                 }
             ],
             "cleanup": [
