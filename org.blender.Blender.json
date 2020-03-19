@@ -627,8 +627,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.81a.tar.xz",
-                    "sha256": "52ac4145cef3d49ca6a36cbc6d009598ca2833143fd6c4f1caba4f5c525680fe"
+                    "url": "https://download.blender.org/source/blender-2.82a.tar.xz",
+                    "sha256": "4de00030201d14e98cce3d3ed61b3c72267fb07dbd46ba779dc261a3d56beba3"
                 },
                 {
                     "type": "file",
