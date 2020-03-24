@@ -44,10 +44,24 @@
     </screenshots>
     <content_rating type="oars-1.1" />
     <releases>
-        <release version="2.81a" date="2019-12-05">
-            <url>https://www.blender.org/download/releases/2-81/</url>
+        <release version="2.82a" date="2020-03-12">
             <description>
-                <p>This release fixes bugs and crashes in 2.81.</p>
+                <p>New features:</p>
+                <ul>
+                    <li>New Mantaflow fluid and smoke simulation system</li>
+                    <li>UDIM textures for rendering and painting</li>
+                    <li>USD scene export</li>
+                    <li>Bevel custom profiles</li>
+                    <li>Cycles custom shader AOVs</li>
+                    <li>Cloth air pressure simulation</li>
+                    <li>Weld modifier for meshes</li>
+                </ul>
+                <p>Enhancements:</p>
+                <ul>
+                    <li>New and improved sculpt tools</li>
+                    <li>New grease pencil tools and modifiers</li>
+                    <li>New bone and constraint settings for rigging</li>
+                </ul>
             </description>
         </release>
         <release version="2.81" date="2019-11-14">
