@@ -72,8 +72,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/01org/tbb/archive/2019_U9.tar.gz",
-                    "sha256": "15652f5328cf00c576f065e5cd3eaf3317422fe82afb67a9bcec0dc065bd2abe"
+                    "url": "https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz",
+                    "sha256": "3f5ea81b9caa195f1967a599036b473b2e7c347117330cda99b79cfcf5b77c84"
                 }
             ],
             "cleanup": [
@@ -621,18 +621,17 @@
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF"
             ],
             "post-install": [
-                "mkdir -p /app/share/appdata",
-                "install -m644 -p ../org.blender.Blender.appdata.xml /app/share/appdata/"
+                "install -Dm644 ../release/freedesktop/org.blender.Blender.appdata.xml -t /app/share/metainfo"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.82a.tar.xz",
-                    "sha256": "4de00030201d14e98cce3d3ed61b3c72267fb07dbd46ba779dc261a3d56beba3"
+                    "url": "https://download.blender.org/source/blender-2.83.0.tar.xz",
+                    "sha256": "14e2bc85e076b12ae94438ff3c1dd417eba642840ed32d7c979724a93aa93f1f"
                 },
                 {
-                    "type": "file",
-                    "path": "org.blender.Blender.appdata.xml"
+                    "type": "patch",
+                    "path": "blender-appdata.patch"
                 }
             ],
             "cleanup": [
