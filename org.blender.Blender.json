@@ -626,8 +626,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.83.1.tar.xz",
-                    "sha256": "4344623cd238a773cba5634fb8f0a723e93b7e92d2c247c9d297dd8dbf25a7cd"
+                    "url": "https://download.blender.org/source/blender-2.83.2.tar.xz",
+                    "sha256": "c18b70349df96bdd1fcec75f61ab6f17cbebd406ddcc8e6ba442773b734c4e22"
                 },
                 {
                     "type": "patch",
