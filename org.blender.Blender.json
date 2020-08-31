@@ -621,17 +621,17 @@
                 "-DWITH_PYTHON_INSTALL:BOOL=OFF"
             ],
             "post-install": [
-                "install -Dm644 ../release/freedesktop/org.blender.Blender.appdata.xml -t /app/share/metainfo"
+                "install -Dm644 ../org.blender.Blender.appdata.xml -t /app/share/appdata"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/source/blender-2.83.2.tar.xz",
-                    "sha256": "c18b70349df96bdd1fcec75f61ab6f17cbebd406ddcc8e6ba442773b734c4e22"
+                    "url": "https://download.blender.org/source/blender-2.83.5.tar.xz",
+                    "sha256": "835ca58f4ff12f21f43ea77ddbabd80cba320952fb2cb39a83a928003ce5ca77"
                 },
                 {
-                    "type": "patch",
-                    "path": "blender-appdata.patch"
+                    "type": "file",
+                    "path": "org.blender.Blender.appdata.xml"
                 }
             ],
             "cleanup": [
