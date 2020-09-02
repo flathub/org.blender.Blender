@@ -44,14 +44,16 @@
             "name": "x264",
             "config-opts": [
                 "--prefix=/app/lib/codecs",
+                "--enable-lto",
+                "--enable-pic",
                 "--enable-shared",
                 "--disable-cli"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-20120209-2245-stable.tar.bz2",
-                    "sha256": "22b9daa2322ea9fd5a62454ecaf22feac2db36b6e0aeac5c52d901f56399f2f9"
+                    "type": "git",
+                    "url": "https://code.videolan.org/videolan/x264.git",
+                    "commit": "cde9a93319bea766a92e306d69059c76de970190"
                 }
             ],
             "cleanup": [
