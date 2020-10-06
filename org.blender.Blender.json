@@ -175,7 +175,7 @@
                     "type": "script",
                     "commands": [
                         "cd /app/blender",
-                        "exec ./blender"
+                        "exec ./blender \"$@\""
                     ],
                     "dest-filename": "blender.sh"
                 }
