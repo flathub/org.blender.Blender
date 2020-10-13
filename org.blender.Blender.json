@@ -151,20 +151,19 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender-2.90.0-linux64 /app/blender",
+                "mv blender-*.*.*-linux64 /app/blender",
                 "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
                 "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
                 "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
-                "mv /app/blender/2.90/datafiles/locale/ /app/share/locale",
-                "ln -sf /app/share/locale /app/blender/2.90/datafiles/locale",
+                "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
                 "install -Dm644 $FLATPAK_ID.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.90/blender-2.90.0-linux64.tar.xz",
-                    "sha256": "d0c9218fa4fc981204d3d187c35b5168b4df4ea71e2e74fb61be1540b935a83c",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.90/blender-2.90.1-linux64.tar.xz",
+                    "sha256": "054668c46a3e56921f283709f51a35f7860786183001cf2ea9be3249d13ac667",
                     "strip-components": 0
                 },
                 {
