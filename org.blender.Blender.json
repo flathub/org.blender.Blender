@@ -30,17 +30,6 @@
     ],
     "modules": [
         {
-            "name": "yasm",
-            "cleanup": [ "*" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "http://www.tortall.net/projects/yasm/releases/yasm-1.3.0.tar.gz",
-                    "sha256": "3dce6601b495f5b3d45b59f7d2492a340ee7e84b5beca17e48f862502bd5603f"
-                }
-            ]
-        },
-        {
             "name": "x264",
             "config-opts": [
                 "--prefix=/app/lib/codecs",
@@ -53,7 +42,7 @@
                 {
                     "type": "git",
                     "url": "https://code.videolan.org/videolan/x264.git",
-                    "commit": "cde9a93319bea766a92e306d69059c76de970190"
+                    "commit": "d198931a63049db1f2c92d96c34904c69fde8117"
                 }
             ],
             "cleanup": [
