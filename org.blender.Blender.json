@@ -151,8 +151,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.91/blender-2.91.0-linux64.tar.xz",
-                    "sha256": "1753d27f833ea263d4431329e952fac01f8e8760711e14a21cedec2e09887adf",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.91/blender-2.91.2-linux64.tar.xz",
+                    "sha256": "8f1e1e8852750e1038579336c7461c1a5492da973ce188e1e5cae99b2f796a23",
                     "strip-components": 0
                 },
                 {
