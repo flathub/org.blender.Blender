@@ -126,7 +126,12 @@
                 {
                     "type": "archive",
                     "url": "https://www.ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz",
-                    "sha256": "ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb"
+                    "sha256": "ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 5405,
+                        "url-template": "https://www.ffmpeg.org/releases/ffmpeg-$version.tar.xz"
+                    }
                 }
             ],
             "cleanup": [
@@ -153,7 +158,12 @@
                     "type": "archive",
                     "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.91/blender-2.91.2-linux64.tar.xz",
                     "sha256": "8f1e1e8852750e1038579336c7461c1a5492da973ce188e1e5cae99b2f796a23",
-                    "strip-components": 0
+                    "strip-components": 0,
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 201,
+                        "url-template": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender$version/blender-$version-linux64.tar.xz"
+                    }
                 },
                 {
                     "type": "file",
