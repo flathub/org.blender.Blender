@@ -41,27 +41,23 @@
     </screenshots>
     <content_rating type="oars-1.1"/>
     <releases>
-        <release version="2.91.2" date="2021-01-20">
+        <release version="2.92" date="2021-02-25">
             <description>
                 <p>New features:</p>
                 <ul>
-                    <li>Volume modifiers</li>
-                    <li>Precise boolean</li>
-                    <li>Cloth brush collision</li>
-                    <li>Custom curve bevels</li>
-                    <li>Grease Pencil image tracer</li>
-                    <li>Property search and fuzzy search</li>
+                    <li>Geometry nodes</li>
+                    <li>Primitive Add</li>
+                    <li>APIC fluid simulation</li>
+                    <li>Cryptomatte and AOV (EEVEE)</li>
+                    <li>Grab silhouette (Sculpting)</li>
                 </ul>
                 <p>Enhancements:</p>
                 <ul>
-                    <li>Boundary and pose cloth brushes</li>
-                    <li>Material holdout for Grease Pencil</li>
-                    <li>Sculpting gestures</li>
-                    <li>Overrides resync and transform support</li>
-                    <li>Animation proxy conversion</li>
-                    <li>Compound shape collision</li>
-                    <li>Outliner collection colors</li>
-                    <li>Snappier F-Curves and seamless keyframe insertion</li>
+                    <li>User interface</li>
+                    <li>Sculpting</li>
+                    <li>Greasepencil</li>
+                    <li>Cycles performance</li>
+                    <li>Compositor</li>
                 </ul>
             </description>
         </release>
