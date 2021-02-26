@@ -137,23 +137,26 @@
         },
         {
             "name": "blender",
-            "buildsystem": "simple",
+            "no-autogen": true,
+            "make-args": [
+                "release"
+            ],
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender-*.*.*-linux64 /app/blender",
-                "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
-                "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
-                "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
-                "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
                 "install -Dm644 $FLATPAK_ID.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.92/blender-2.92.0-linux64.tar.xz",
-                    "sha256": "2cd17ad6e9d6c241ac14b84ad6e72b507aeec979da3d926b1a146e88e0eb3eb4",
-                    "strip-components": 0
+                    "type": "git",
+                    "url": "https://git.blender.org/blender.git",
+                    "tag": "v2.92.0",
+                    "commit": "5ed4f116a9a11416ad0839b88d4b12d63c4d7205"
+                },
+                {
+                    "type": "svn",
+                    "url": "https://svn.blender.org/svnroot/bf-blender/trunk/lib/linux_centos7_x86_64",
+                    "dest": "lib"
                 },
                 {
                     "type": "file",
