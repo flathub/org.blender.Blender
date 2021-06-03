@@ -140,7 +140,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender-*.*.*-linux64 /app/blender",
+                "mv blender-*.*.*-linux.x86_64-release /app/blender",
                 "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
                 "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
