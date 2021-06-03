@@ -46,7 +46,7 @@
                 <p>New features:</p>
                 <ul>
                     <li>More geometry nodes</li>
-                    <li>Mask loops & patterns</li>
+                    <li>Mask loops &amp; patterns</li>
                     <li>Mask textures</li>
                     <li>Line art modifier</li>
                     <li>New fill tool in Greasepencil</li>
