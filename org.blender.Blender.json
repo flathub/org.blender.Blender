@@ -140,19 +140,18 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender-*.*.*-linux.x86_64-release /app/blender",
-                "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
+                "install -Dm644 blender-*-linux-x64/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
-                "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
-                "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
-                "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
+                "install -Dm644 blender-*-linux-x64/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
+                "install -Dm644 blender-*-linux-x64/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
+                "cd blender-*-linux-x64/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
                 "install -Dm644 $FLATPAK_ID.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.0-linux-x64.tar.xz",
-                    "sha256": "46b4b2ac3e0ef1768be4f63332d15d8a48bcf5bff18920d3b21e3b8aaaac85e3",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.1-linux-x64.tar.xz",
+                    "sha256": "6159316089de79ce0c3edec8cfdc5f08a6ca79e6a1fa8642538bc850c43970fe",
                     "strip-components": 0
                 },
                 {
