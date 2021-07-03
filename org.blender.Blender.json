@@ -140,11 +140,12 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "install -Dm644 blender-*-linux-x64/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
+                "mv blender*linux* /app/blender",
+                "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
-                "install -Dm644 blender-*-linux-x64/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
-                "install -Dm644 blender-*-linux-x64/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
-                "cd blender-*-linux-x64/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
+                "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
+                "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
+                "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
                 "install -Dm644 $FLATPAK_ID.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ],
             "sources": [
