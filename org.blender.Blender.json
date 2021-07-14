@@ -140,7 +140,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender-*.*.*-linux.x86_64-release /app/blender",
+                "mv blender*linux* /app/blender",
                 "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
                 "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
@@ -151,8 +151,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.0-linux-x64.tar.xz",
-                    "sha256": "46b4b2ac3e0ef1768be4f63332d15d8a48bcf5bff18920d3b21e3b8aaaac85e3",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.1-linux-x64.tar.xz",
+                    "sha256": "6159316089de79ce0c3edec8cfdc5f08a6ca79e6a1fa8642538bc850c43970fe",
                     "strip-components": 0
                 },
                 {
