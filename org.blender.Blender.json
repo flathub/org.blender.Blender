@@ -151,9 +151,15 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.1-linux-x64.tar.xz",
-                    "sha256": "6159316089de79ce0c3edec8cfdc5f08a6ca79e6a1fa8642538bc850c43970fe",
-                    "strip-components": 0
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.3-linux-x64.tar.xz",
+                    "sha256": "c4a772f712ccfc6b288dce502e8d0c5829da05168efbdb9c10d1ca971ec9b4b4",
+                    "strip-components": 0,
+                    "x-checker-data": {
+                    "type": "anitya",
+                    "project-id": 201,
+                    "stable-only": true,
+                    "url-template": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz"
+                    }
                 },
                 {
                     "type": "file",
