@@ -153,7 +153,7 @@
                     "type": "archive",
                     "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender2.93/blender-2.93.3-linux-x64.tar.xz",
                     "sha256": "c4a772f712ccfc6b288dce502e8d0c5829da05168efbdb9c10d1ca971ec9b4b4",
-                    "strip-components": 0
+                    "strip-components": 0,
                     "x-checker-data": {
                     "type": "anitya",
                     "project-id": 201,
