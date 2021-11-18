@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "20.08",
+    "runtime-version": "21.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
@@ -21,7 +21,7 @@
         },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
-            "version": "20.08",
+            "version": "21.08",
             "add-ld-path": "."
         }
     },
