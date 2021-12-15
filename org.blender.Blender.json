@@ -156,6 +156,10 @@
                     "path": "org.blender.Blender.appdata.xml"
                 },
                 {
+                    "type": "patch",
+                    "path": "blender-desktop-add-wm-class.patch"
+                },
+                {
                     "type": "script",
                     "commands": [
                         "cd /app/blender",
