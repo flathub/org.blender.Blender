@@ -1,21 +1,8 @@
-From 9e08543926e68ac776f1aad461954936afb37ed0 Mon Sep 17 00:00:00 2001
-From: Stan Janssen <stan@finetuned.nl>
-Date: Wed, 15 Dec 2021 11:14:46 +0100
-Subject: [PATCH] Add StartupWMClass to .desktop
-
----
- blender.desktop | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/blender-3.0.0-linux-x64/blender.desktop b/blender-3.0.0-linux-x64/blender.desktop
-index 792f98b..b9d74d9 100644
---- a/blender-3.0.0-linux-x64/blender.desktop
-+++ b/blender-3.0.0-linux-x64/blender.desktop
-@@ -87,3 +87,4 @@ PrefersNonDefaultGPU=true
+diff -ruN a/blender.desktop b/blender.desktop
+--- a/blender.desktop	2021-10-27 21:20:46.000000000 +0200
++++ b/blender.desktop	2022-01-30 00:29:45.070813479 +0100
+@@ -87,3 +87,4 @@
  X-KDE-RunOnDiscreteGpu=true
  Categories=Graphics;3DGraphics;
  MimeType=application/x-blender;
 +StartupWMClass=Blender
--- 
-2.25.1
-
