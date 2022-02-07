@@ -7,10 +7,10 @@ Subject: [PATCH] Add StartupWMClass to .desktop
  blender.desktop | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/blender-3.0.0-linux-x64/blender.desktop b/blender-3.0.0-linux-x64/blender.desktop
+diff --git a/blender/blender.desktop b/blender/blender.desktop
 index 792f98b..b9d74d9 100644
---- a/blender-3.0.0-linux-x64/blender.desktop
-+++ b/blender-3.0.0-linux-x64/blender.desktop
+--- a/blender/blender.desktop
++++ b/blender/blender.desktop
 @@ -87,3 +87,4 @@ PrefersNonDefaultGPU=true
  X-KDE-RunOnDiscreteGpu=true
  Categories=Graphics;3DGraphics;

@@ -130,7 +130,7 @@
             "buildsystem": "simple",
             "build-commands": [
                 "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender*linux* /app/blender",
+                "mv blender /app/blender",
                 "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
                 "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
@@ -150,6 +150,10 @@
                         "stable-only": true,
                         "url-template": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz"
                     }
+                },
+                {
+                    "type": "shell",
+                    "commands": ["mv blender*linux* blender"]
                 },
                 {
                     "type": "file",
