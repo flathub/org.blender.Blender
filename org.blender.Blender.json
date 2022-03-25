@@ -42,7 +42,7 @@
                 {
                     "type": "git",
                     "url": "https://code.videolan.org/videolan/x264.git",
-                    "commit": "d198931a63049db1f2c92d96c34904c69fde8117"
+                    "commit": "bfc87b7a330f75f5c9a21e56081e4b20344f139e"
                 }
             ],
             "cleanup": [
@@ -115,8 +115,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.ffmpeg.org/releases/ffmpeg-4.3.1.tar.xz",
-                    "sha256": "ad009240d46e307b4e03a213a0f49c11b650e445b1f8be0dda2a9212b34d2ffb"
+                    "url": "https://www.ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz",
+                    "sha256": "eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02"
                 }
             ],
             "cleanup": [
