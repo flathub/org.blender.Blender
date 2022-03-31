@@ -141,8 +141,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.1/blender-3.1.0-linux-x64.tar.xz",
-                    "sha256": "ced2aaabc75731c2ae0e29493d0d2db7803d2bbb70a11cd0e7f50546d465bd8c",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.1/blender-3.1.1-linux-x64.tar.xz",
+                    "sha256": "adaa4650cf055273ee2cb6bbd2dead8b43a0f82f3d7ba871d4238e115a69f7e9",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
