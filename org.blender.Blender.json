@@ -10,7 +10,9 @@
         "--socket=pulseaudio",
         "--device=dri",
         "--share=network",
-        "--filesystem=host"
+        "--filesystem=host",
+        "--env=TMP_DIR=/tmp",
+        "--env=TMP=/tmp"
     ],
     "add-extensions": {
         "org.blender.Blender.Codecs": {
