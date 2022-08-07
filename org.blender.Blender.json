@@ -4,6 +4,8 @@
     "runtime-version": "21.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
+    "rename-desktop-file": "blender.desktop",
+    "rename-icon": "blender",
     "finish-args": [
         "--share=ipc",
         "--socket=x11",
@@ -31,6 +33,333 @@
         "mkdir -p /app/lib/ffmpeg"
     ],
     "modules": [
+        "shared-modules/glu/glu-9.json",
+        "shared-modules/glew/glew.json",
+        {
+            "name": "jemalloc",
+            "config-opts": [
+                "--disable-documentation",
+                "--disable-static"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2",
+                    "sha256": "34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a",
+                "/lib/pkgconfig",
+                "/share/doc",
+                "/share/man"
+            ]
+        },
+        {
+            "name": "oneTBB",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make tbb tbbmalloc tbbproxy",
+                "install -p -D -m755 build/linux_*_release/libtbb.so.2 /app/lib/libtbb.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbb.so",
+                "install -p -D -m755 build/linux_*_release/libtbbmalloc.so.2 /app/lib/libtbbmalloc.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbbmalloc.so",
+                "install -p -D -m755 build/linux_*_release/libtbbmalloc_proxy.so.2 /app/lib/libtbbmalloc_proxy.so.2",
+                "ln -s libtbb.so.2 /app/lib/libtbbmalloc_proxy.so",
+                "cp -dR --preserve=mode,timestamp include/tbb /app/include/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz",
+                    "sha256": "3f5ea81b9caa195f1967a599036b473b2e7c347117330cda99b79cfcf5b77c84"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "boost",
+            "buildsystem": "simple",
+            "build-commands": [
+                "./bootstrap.sh --prefix=/app --with-libraries=date_time,filesystem,iostreams,locale,regex,system,thread",
+                "./b2 --build-type=minimal link=shared",
+                "./b2 --build-type=minimal link=shared install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2",
+                    "sha256": "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "opencolorio",
+            "buildsystem": "cmake",
+            "builddir": true,
+            "build-options" : {
+                "env": {
+                    "CXXFLAGS": "-Wno-error=unused-function -Wno-error=deprecated-declarations -Wno-error=cast-function-type"
+                },
+                "arch" : {
+                    "arm" : {
+                        "config-opts" : [
+                            "-DOCIO_USE_SSE:BOOL=OFF"
+                        ]
+                    },
+                    "aarch64" : {
+                        "config-opts" : [
+                            "-DOCIO_USE_SSE:BOOL=OFF"
+                        ]
+                    }
+                }
+            },
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DOCIO_BUILD_APPS:BOOL=OFF",
+                "-DOCIO_BUILD_DOCS:BOOL=OFF",
+                "-DOCIO_BUILD_STATIC:BOOL=OFF",
+                "-DOCIO_BUILD_TESTS:BOOL=OFF",
+                "-DOCIO_BUILD_JNIGLUE:BOOL=OFF",
+                "-DOCIO_STATIC_JNIGLUE:BOOL=OFF",
+                "-DPYTHON=/usr/bin/python3"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.1.1.tar.gz",
+                    "sha256": "c9b5b9def907e1dafb29e37336b702fff22cc6306d445a13b1621b8a754c14c8"
+                },
+                {
+                    "type": "patch",
+                    "path": "0001-openColoreIO-Suppress-warnings-as-errors.patch"
+                }
+            ],
+            "cleanup": [
+                "/*.cmake",
+                "/cmake",
+                "/include",
+                "/lib/pkgconfig",
+                "/share"
+            ]
+        },
+        {
+            "name": "openexr",
+            "buildsystem": "cmake",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS:BOOL=ON",
+                "-DILMBASE_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
+                "-DOPENEXR_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
+                "-DBUILD_TESTING:BOOL=OFF",
+                "-DNAMESPACE_VERSIONING:BOOL=OFF",
+                "-DPYILMBASE_ENABLE:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v2.4.0.tar.gz",
+                    "sha256": "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.la",
+                "/lib/cmake",
+                "/lib/pkgconfig",
+                "/share/aclocal",
+                "/share/doc"
+            ]
+        },
+        {
+            "name": "openimageio",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DOIIO_BUILD_TOOLS:BOOL=OFF",
+                "-DOIIO_BUILD_TESTS:BOOL=OFF",
+                "-DBUILDSTATIC:BOOL=OFF",
+                "-DINSTALL_DOCS:BOOL=OFF",
+                "-DOpenGL_GL_PREFERENCE:STRING=GLVND",
+                "-DUSE_QT:BOOL=OFF",
+                "-DUSE_PYTHON:BOOL=OFF",
+                "-DUSE_FFMPEG:BOOL=OFF",
+                "-DUSE_OPENCV:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.8.17.tar.gz",
+                    "sha256": "a019086c05a6150d445a2240bab1723dff540dde5f5c327c36a97f0b5ae0e157"
+                }
+            ],
+            "cleanup": [
+                "/include"
+            ]
+        },
+        {
+            "name": "opensubdiv",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DGLEW_LOCATION=/app",
+                "-DNO_EXAMPLES=1",
+                "-DNO_TUTORIALS=1",
+                "-DNO_PTEX=1",
+                "-DNO_DOC=1"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_3_3.tar.gz",
+                    "sha256": "2dc81b3a085e692cca3166ac88751e4674a9ddf5b5d7935adf677bb2bd3f2d2f"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a",
+                "/share"
+            ]
+        },
+        {
+            "name": "blosc",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_BENCHMARKS:BOOL=OFF",
+                "-DBUILD_STATIC:BOOL=OFF",
+                "-DBUILD_TESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/Blosc/c-blosc/archive/v1.14.4.tar.gz",
+                    "sha256": "42a85de871d142cdc89b607a90cceeb0eab60d995f6fae8d44aae397ab414002"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/*.a",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "openvdb",
+            "subdir": "openvdb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= GLFW_INCL_DIR= PYTHON_VERSION= DOXYGEN= install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/v5.1.0.tar.gz",
+                    "sha256": "eb5a8011732bcdeb115de9a38f640ee376bcb85b54e060d3b1ab08f9dc92f40b"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a"
+            ]
+        },
+        {
+            "name": "alembic",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DUSE_ARNOLD:BOOL=OFF",
+                "-DUSE_BINARIES:BOOL=OFF",
+                "-DUSE_EXAMPLES:BOOL=OFF",
+                "-DUSE_HDF5:BOOL=OFF",
+                "-DUSE_MAYA:BOOL=OFF",
+                "-DUSE_PRMAN:BOOL=OFF",
+                "-DUSE_PYALEMBIC:BOOL=OFF",
+                "-DUSE_STATIC_HDF5:BOOL=OFF",
+                "-DUSE_TESTS:BOOL=OFF",
+                "-DALEMBIC_ILMBASE_LINK_STATIC:BOOL=OFF",
+                "-DALEMBIC_SHARED_LIBS:BOOL=OFF",
+                "-DALEMBIC_SHARED_LIBS:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/alembic/alembic/archive/1.7.12.tar.gz",
+                    "sha256": "6c603b87c9a3eaa13618e577dd9ef5277018cdcd09ac82d3c196ad8bed6a1b48"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake"
+            ]
+        },
+        {
+            "name": "opencollada",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DUSE_EXPAT:BOOL=OFF",
+                "-DUSE_LIBXML:BOOL=ON",
+                "-DUSE_STATIC:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/v1.6.68.tar.gz",
+                    "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b"
+                },
+                {
+                    "type": "patch",
+                    "path": "opencollada-include-pcre-h.patch"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/opencollada"
+            ]
+        },
+        {
+            "name": "openimagedenoise",
+            "only-arches": [
+                "x86_64"
+            ],
+            "buildsystem": "cmake",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DOIDN_STATIC_LIB:BOOL=ON",
+                "-DMKLDNN_BUILD_EXAMPLES:BOOL=OFF",
+                "-DMKLDNN_BUILD_TESTS:BOOL=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/OpenImageDenoise/oidn/releases/download/v1.1.0/oidn-1.1.0.src.tar.gz",
+                    "sha256": "4dd484abea8a0b3d12d346343fcb1ab7abef8f94318d8c537f69a20c2a75c4eb"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/*.a",
+                "/lib/cmake",
+                "/share/doc"
+            ]
+        },
         {
             "name": "x264",
             "config-opts": [
@@ -44,6 +373,7 @@
                 {
                     "type": "git",
                     "url": "https://code.videolan.org/videolan/x264.git",
+                    "branch": "stable",
                     "commit": "baee400fa9ced6f5481a728138fed6e867b0ff7f"
                 }
             ],
@@ -128,40 +458,176 @@
             ]
         },
         {
-            "name": "blender",
+            "name": "numpy",
             "buildsystem": "simple",
             "build-commands": [
-                "install -Dm755 blender.sh /app/bin/blender",
-                "mv blender /app/blender",
-                "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
-                "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
-                "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
-                "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
-                "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
-                "install -Dm644 $FLATPAK_ID.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
+                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.2/blender-3.2.2-linux-x64.tar.xz",
-                    "sha256": "1726560157d90cf2aaaeb6d25ded1783d66bff043814cd95b90fc0af1d9e018b",
-                    "strip-components": 0,
-                    "x-checker-data": {
-                        "type": "anitya",
-                        "project-id": 201,
-                        "stable-only": true,
-                        "url-template": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz"
-                    }
-                },
+                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.17.4.zip",
+                    "sha256": "f58913e9227400f1395c7b800503ebfdb0772f1c33ff8cb4d6451c06cabdf316"
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/lib/python3.*/site-packages/numpy/core/include",
+                "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
+                "/lib/python3.*/site-packages/numpy/tests",
+                "/lib/python3.*/site-packages/numpy/*/tests"
+            ]
+        },
+        {
+            "name": "certifi",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 --disable-pip-version-check install --prefix=/app --no-deps --verbose ."
+            ],
+            "sources": [
                 {
-                    "type": "shell",
-                    "commands": [
-                        "mv blender*linux* blender"
-                    ]
-                },
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/c/certifi/certifi-2019.9.11.tar.gz",
+                    "sha256": "e4f3620cfea4f83eedc95b24abd9cd56f3c4b146dd0177e83a21b4eb49e21e50"
+                }
+            ]
+        },
+        {
+            "name": "chardet",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 --disable-pip-version-check install --prefix=/app --no-deps --verbose ."
+            ],
+            "sources": [
                 {
-                    "type": "file",
-                    "path": "org.blender.Blender.appdata.xml"
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/c/chardet/chardet-3.0.4.tar.gz",
+                    "sha256": "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
+                }
+            ],
+            "cleanup": [
+                "/bin"
+            ]
+        },
+        {
+            "name": "idna",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 --disable-pip-version-check install --prefix=/app --no-deps --verbose ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/i/idna/idna-2.8.tar.gz",
+                    "sha256": "c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407"
+                }
+            ]
+        },
+        {
+            "name": "urllib3",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 --disable-pip-version-check install --prefix=/app --no-deps --verbose ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/u/urllib3/urllib3-1.25.7.tar.gz",
+                    "sha256": "f3c5fd51747d450d4dcf6f923c81f78f811aab8205fda64b0aba34a4e48b0745"
+                }
+            ]
+        },
+        {
+            "name": "requests",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 --disable-pip-version-check install --prefix=/app --no-deps --verbose ."
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/source/r/requests/requests-2.22.0.tar.gz",
+                    "sha256": "11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4"
+                }
+            ]
+        },
+        {
+            "name": "blender",
+            "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
+            "sha256": "ced2aaabc75731c2ae0e29493d0d2db7803d2bbb70a11cd0e7f50546d465bd8c",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                /* Same as upstream official builds */
+                "-DWITH_ALEMBIC:BOOL=ON",
+                "-DWITH_ASSERT_ABORT:BOOL=OFF",
+                "-DWITH_BUILDINFO:BOOL=ON",
+                "-DWITH_BULLET:BOOL=ON",
+                "-DWITH_CODEC_AVI:BOOL=ON",
+                "-DWITH_CODEC_FFMPEG:BOOL=ON",
+                "-DWITH_CODEC_SNDFILE:BOOL=ON",
+                "-DWITH_CYCLES:BOOL=ON",
+                "-DWITH_CYCLES_OSL:BOOL=ON",
+                "-DWITH_DRACO:BOOL=ON",
+                "-DWITH_FFTW3:BOOL=ON",
+                "-DWITH_LIBMV:BOOL=ON",
+                "-DWITH_LIBMV_SCHUR_SPECIALIZATIONS:BOOL=ON",
+                "-DWITH_COMPOSITOR:BOOL=ON",
+                "-DWITH_FREESTYLE:BOOL=ON",
+                "-DWITH_GHOST_XDND:BOOL=ON",
+                "-DWITH_IK_SOLVER:BOOL=ON",
+                "-DWITH_IK_ITASC:BOOL=ON",
+                "-DWITH_IMAGE_CINEON:BOOL=ON",
+                "-DWITH_IMAGE_DDS:BOOL=ON",
+                "-DWITH_IMAGE_HDR:BOOL=ON",
+                "-DWITH_IMAGE_OPENEXR:BOOL=ON",
+                "-DWITH_IMAGE_OPENJPEG:BOOL=ON",
+                "-DWITH_IMAGE_TIFF:BOOL=ON",
+                "-DWITH_INTERNATIONAL:BOOL=ON",
+                "-DWITH_LZMA:BOOL=ON",
+                "-DWITH_LZO:BOOL=ON",
+                "-DWITH_MOD_FLUID:BOOL=ON",
+                "-DWITH_MOD_REMESH:BOOL=ON",
+                "-DWITH_MOD_SMOKE:BOOL=ON",
+                "-DWITH_MOD_OCEANSIM:BOOL=ON",
+                "-DWITH_AUDASPACE:BOOL=ON",
+                "-DWITH_OPENAL:BOOL=ON",
+                "-DWITH_OPENCOLLADA:BOOL=ON",
+                "-DWITH_OPENCOLORIO:BOOL=ON",
+                "-DWITH_OPENIMAGEDENOISE:BOOL=ON",
+                "-DWITH_OPENMP:BOOL=ON",
+                "-DWITH_OPENSUBDIV:BOOL=ON",
+                "-DWITH_OPENVDB:BOOL=ON",
+                "-DWITH_OPENVDB_BLOSC:BOOL=ON",
+                "-DWITH_QUADRIFLOW:BOOL=ON",
+                "-DWITH_RAYOPTIMIZATION:BOOL=ON",
+                "-DWITH_SDL:BOOL=ON",
+                "-DWITH_TBB:BOOL=ON",
+                "-DWITH_X11_XINPUT:BOOL=ON",
+                "-DWITH_X11_XF86VMODE:BOOL=ON",
+                "-DWITH_MEM_JEMALLOC:BOOL=ON",
+                "-DWITH_CYCLES_CUDA_BINARIES:BOOL=ON",
+                "-DWITH_CYCLES_CUBIN_COMPILER:BOOL=OFF",
+                "-DCYCLES_CUDA_BINARIES_ARCH:STRING=sm_30;sm_35;sm_37;sm_50;sm_52;sm_60;sm_61;sm_70;sm_75",
+                "-DWITH_CYCLES_DEVICE_OPTIX:BOOL=ON",
+
+                /* Changed from upstream official builds */
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DPYTHON_NUMPY_PATH:PATH=/app/lib/python3.7/site-packages",
+                "-DWITH_DOC_MANPAGE:BOOL=OFF",
+                "-DWITH_INPUT_NDOF:BOOL=OFF",
+                "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
+                "-DWITH_JACK:BOOL=OFF",
+                "-DWITH_PYTHON_INSTALL:BOOL=OFF"
+            ],
+            "post-install": [
+                "install -Dm644 ../org.blender.Blender.appdata.xml -t /app/share/appdata"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
+                    "sha256": "835ca58f4ff12f21f43ea77ddbabd80cba320952fb2cb39a83a928003ce5ca77"
                 },
                 {
                     "type": "patch",
@@ -173,8 +639,23 @@
                         "cd /app/blender",
                         "exec ./blender \"$@\""
                     ],
-                    "dest-filename": "blender.sh"
+                    "dest-filename": "blender.sh",
+                    "strip-components": 0,
+                    "x-checker-data": {
+                        "type": "rotating-url",
+                        "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
+                        "url-template": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz"
+                    }
+                },
+                {
+                    "type": "file",
+                    "path": "org.blender.Blender.appdata.xml"
                 }
+            ],
+            "cleanup": [
+                "/bin/blender-thumbnailer.py",
+                "/share/blender/*/scripts/addons/cycles/source",
+                "/share/doc"
             ]
         }
     ]
