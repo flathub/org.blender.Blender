@@ -45,7 +45,12 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2",
-                    "sha256": "34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6"
+                    "sha256": "34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6",
+                    "x-checker-data": {
+                        "type": "rotating-url",
+                        "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2",
+                        "url-template": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-$version.tar.bz2"
+		    }
                 }
             ],
             "cleanup": [
@@ -74,7 +79,12 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz",
-                    "sha256": "3f5ea81b9caa195f1967a599036b473b2e7c347117330cda99b79cfcf5b77c84"
+                    "sha256": "3f5ea81b9caa195f1967a599036b473b2e7c347117330cda99b79cfcf5b77c84",
+                    "x-checker-data": {
+                        "type": "rotating-url",
+                        "url": "https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz",
+                        "url-template": "https://github.com/oneapi-src/oneTBB/archive/$version.tar.gz"
+                    }
                 }
             ],
             "cleanup": [
@@ -93,7 +103,12 @@
                 {
                     "type": "archive",
                     "url": "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2",
-                    "sha256": "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc"
+                    "sha256": "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc",
+                    "x-checker-data": {
+                        "type": "rotating-url",
+                        "url": "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2",
+                        "url-template": "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_$version.tar.bz2"
+                    }
                 }
             ],
             "cleanup": [
@@ -626,25 +641,16 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
-                    "sha256": "7e169e00789a12677a6bd1dac4dee43f666fa763fd7ab840b2fef6a56e24b566"
+                    "sha256": "7e169e00789a12677a6bd1dac4dee43f666fa763fd7ab840b2fef6a56e24b566",
+                    "x-checker-data": {
+                        "type": "rotating-url",
+                        "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
+                        "url-template": "https://github.com/blender/blender/archive/refs/tags/v$version.tar.gz"
+                    }
                 },
                 {
                     "type": "patch",
                     "path": "blender-desktop-add-wm-class.patch"
-                },
-                {
-                    "type": "script",
-                    "commands": [
-                        "cd /app/blender",
-                        "exec ./blender \"$@\""
-                    ],
-                    "dest-filename": "blender.sh",
-                    "strip-components": 0,
-                    "x-checker-data": {
-                        "type": "rotating-url",
-                        "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
-                        "url-template": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz"
-                    }
                 },
                 {
                     "type": "file",
