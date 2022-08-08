@@ -1,0 +1,26 @@
+From 932772254535134e020e5110a01889aff8af4ca3 Mon Sep 17 00:00:00 2001
+From: Mathieu Bridon <bochecha@daitauha.fr>
+Date: Mon, 8 Aug 2022 10:10:13 +0200
+Subject: [PATCH] OpenColorIO: Suppress warnings as errors
+
+This was taken from Gentoo: https://bugs.gentoo.org/786198
+---
+ src/core/CMakeLists.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+index 1eb691b..cff9bd8 100644
+--- a/src/core/CMakeLists.txt
++++ b/src/core/CMakeLists.txt
+@@ -23,8 +23,6 @@ if(WIN32)
+     if("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+         set(EXTERNAL_COMPILE_FLAGS "${EXTERNAL_COMPILE_FLAGS} /WX")
+     endif()
+-else()
+-    set(EXTERNAL_COMPILE_FLAGS "${EXTERNAL_COMPILE_FLAGS} -Werror")
+ endif()
+ 
+ # SHARED
+-- 
+2.37.1
+
