@@ -1,0 +1,23 @@
+From 604821537eb594b11d9222cc3f40aad67222afbd Mon Sep 17 00:00:00 2001
+From: Mathieu Bridon <bochecha@daitauha.fr>
+Date: Sun, 10 Apr 2022 15:33:16 +0200
+Subject: [PATCH] Don't use the system /usr/lib in the container...
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 3742f3c..2554477 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,5 +1,5 @@
+ LIBTOOL = libtool
+-LIBDIR = /usr/lib
++LIBDIR = /app/lib
+ CXX = g++
+ CXXFLAGS = -g -O3 -Wall -Wextra -Wshadow -Wconversion -Wcast-qual -Wformat=2
+ 
+-- 
+2.35.1
+
