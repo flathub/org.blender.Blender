@@ -50,7 +50,7 @@
                         "type": "rotating-url",
                         "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2",
                         "url-template": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-$version.tar.bz2"
-		    }
+                    }
                 }
             ],
             "cleanup": [
@@ -155,8 +155,13 @@
                 {
                     "type": "patch",
                     "path": "patches/OpenColorIO/0001-openColoreIO-Suppress-warnings-as-errors.patch"
+                },
+                "x-checker-data": {
+                    "type": "rotating-url",
+                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.1.1.tar.gz",
+                    "url-template": "//github.com/imageworks/OpenColorIO/archive/v$version.tar.gz"
                 }
-            ],
+             ],
             "cleanup": [
                 "/*.cmake",
                 "/cmake",
@@ -338,7 +343,7 @@
                     "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b",
                     "x-checker-data": {
                         "type": "rotating-url",
-			"url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v1.6.68.tar.gz",
+                        "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v1.6.68.tar.gz",
                         "url-pattern": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v1.6.68.tar.gz"
                     }
                 }
