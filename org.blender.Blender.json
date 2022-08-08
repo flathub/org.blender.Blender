@@ -153,16 +153,17 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/imageworks/OpenColorIO/archive/v1.1.1.tar.gz",
-                    "sha256": "c9b5b9def907e1dafb29e37336b702fff22cc6306d445a13b1621b8a754c14c8"
+                    "sha256": "c9b5b9def907e1dafb29e37336b702fff22cc6306d445a13b1621b8a754c14c8",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 9631,
+                        "stable-only": true,
+                        "url-template": "https://github.com/imageworks/OpenColorIO/archive/v$version.tar.gz"
+                    }
                 },
                 {
                     "type": "patch",
                     "path": "patches/OpenColorIO/0001-openColoreIO-Suppress-warnings-as-errors.patch"
-                },
-                "x-checker-data": {
-                    "type": "rotating-url",
-                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.1.1.tar.gz",
-                    "url-template": "//github.com/imageworks/OpenColorIO/archive/v$version.tar.gz"
                 }
              ],
             "cleanup": [
@@ -190,7 +191,13 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v2.4.0.tar.gz",
-                    "sha256": "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1"
+                    "sha256": "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 13289,
+                        "stable-only": true,
+                        "url-template": "https://github.com/AcademySoftwareFoundation/openexr/archive/v$version.tar.gz"
+                    }
                 }
             ],
             "cleanup": [
@@ -222,7 +229,13 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.8.17.tar.gz",
-                    "sha256": "a019086c05a6150d445a2240bab1723dff540dde5f5c327c36a97f0b5ae0e157"
+                    "sha256": "a019086c05a6150d445a2240bab1723dff540dde5f5c327c36a97f0b5ae0e157",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 2548,
+                        "stable-only": true,
+                        "url-template": "https://github.com/OpenImageIO/oiio/archive/v$version.tar.gz"
+                    }
                 }
             ],
             "cleanup": [
@@ -245,7 +258,13 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_3_3.tar.gz",
-                    "sha256": "2dc81b3a085e692cca3166ac88751e4674a9ddf5b5d7935adf677bb2bd3f2d2f"
+                    "sha256": "2dc81b3a085e692cca3166ac88751e4674a9ddf5b5d7935adf677bb2bd3f2d2f",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 96394,
+                        "stable-only": true,
+                        "url-template": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v$version.tar.gz"
+                    }
                 }
             ],
             "cleanup": [
