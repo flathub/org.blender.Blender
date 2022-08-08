@@ -139,7 +139,7 @@
                 },
                 {
                     "type": "patch",
-                    "path": "0001-openColoreIO-Suppress-warnings-as-errors.patch"
+                    "path": "patches/OpenColorIO/0001-openColoreIO-Suppress-warnings-as-errors.patch"
                 }
             ],
             "cleanup": [
@@ -320,11 +320,12 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/v1.6.68.tar.gz",
-                    "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b"
-                },
-                {
-                    "type": "patch",
-                    "path": "opencollada-include-pcre-h.patch"
+                    "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b",
+                    "x-checker-data": {
+                        "type": "rotating-url",
+			"url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v1.6.68.tar.gz",
+                        "url-pattern": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v1.6.68.tar.gz"
+                    }
                 }
             ],
             "cleanup": [
@@ -553,8 +554,6 @@
         },
         {
             "name": "blender",
-            "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
-            "sha256": "ced2aaabc75731c2ae0e29493d0d2db7803d2bbb70a11cd0e7f50546d465bd8c",
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
@@ -627,7 +626,7 @@
                 {
                     "type": "archive",
                     "url": "https://github.com/blender/blender/archive/refs/tags/v3.2.2.tar.gz",
-                    "sha256": "835ca58f4ff12f21f43ea77ddbabd80cba320952fb2cb39a83a928003ce5ca77"
+                    "sha256": "7e169e00789a12677a6bd1dac4dee43f666fa763fd7ab840b2fef6a56e24b566"
                 },
                 {
                     "type": "patch",
