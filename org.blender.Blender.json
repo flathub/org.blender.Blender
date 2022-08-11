@@ -44,8 +44,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2",
-                    "sha256": "34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6",
+                    "url": "https://github.com/jemalloc/jemalloc/releases/download/5.3.0/jemalloc-5.3.0.tar.bz2",
+                    "sha256": "2db82d1e7119df3e71b7640219b6dfe84789bc0537983c3b7ac4f7189aecfeaa",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 1441,
@@ -79,8 +79,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/oneapi-src/oneTBB/archive/2019_U9.tar.gz",
-                    "sha256": "3f5ea81b9caa195f1967a599036b473b2e7c347117330cda99b79cfcf5b77c84",
+                    "url": "https://github.com/oneapi-src/oneTBB/archive/v2021.5.0.tar.gz",
+                    "sha256": "e5b57537c741400cf6134b428fc1689a649d7d38d9bb9c1b6d64f092ea28178a",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 227581,
@@ -104,8 +104,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2",
-                    "sha256": "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc",
+                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2",
+                    "sha256": "1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 6845,
@@ -122,18 +122,18 @@
             "name": "opencolorio",
             "buildsystem": "cmake",
             "builddir": true,
-            "build-options" : {
+            "build-options": {
                 "env": {
                     "CXXFLAGS": "-Wno-error=unused-function -Wno-error=deprecated-declarations -Wno-error=cast-function-type"
                 },
-                "arch" : {
-                    "arm" : {
-                        "config-opts" : [
+                "arch": {
+                    "arm": {
+                        "config-opts": [
                             "-DOCIO_USE_SSE:BOOL=OFF"
                         ]
                     },
-                    "aarch64" : {
-                        "config-opts" : [
+                    "aarch64": {
+                        "config-opts": [
                             "-DOCIO_USE_SSE:BOOL=OFF"
                         ]
                     }
@@ -152,8 +152,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.1.1.tar.gz",
-                    "sha256": "c9b5b9def907e1dafb29e37336b702fff22cc6306d445a13b1621b8a754c14c8",
+                    "url": "https://github.com/imageworks/OpenColorIO/archive/v2.1.2.tar.gz",
+                    "sha256": "6c6d153470a7dbe56136073e7abea42fa34d06edc519ffc0a159daf9f9962b0b",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 9631,
@@ -165,7 +165,7 @@
                     "type": "patch",
                     "path": "patches/OpenColorIO/0001-openColoreIO-Suppress-warnings-as-errors.patch"
                 }
-             ],
+            ],
             "cleanup": [
                 "/*.cmake",
                 "/cmake",
@@ -190,8 +190,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v2.4.0.tar.gz",
-                    "sha256": "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1",
+                    "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v3.1.5.tar.gz",
+                    "sha256": "93925805c1fc4f8162b35f0ae109c4a75344e6decae5a240afdfce25f8a433ec",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 13289,
@@ -228,8 +228,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.8.17.tar.gz",
-                    "sha256": "a019086c05a6150d445a2240bab1723dff540dde5f5c327c36a97f0b5ae0e157",
+                    "url": "https://github.com/OpenImageIO/oiio/archive/v2.3.18.0.tar.gz",
+                    "sha256": "09c7fa0685fdb34f696f2e5d44c2ba2336b5ca6ad8851cb516575508fe06397a",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 2548,
@@ -257,8 +257,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_3_3.tar.gz",
-                    "sha256": "2dc81b3a085e692cca3166ac88751e4674a9ddf5b5d7935adf677bb2bd3f2d2f",
+                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_4_4.tar.gz",
+                    "sha256": "20d49f80a2b778ad4d01f091ad88d8c2f91cf6c7363940c6213241ce6f1048fb",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 96394,
@@ -361,7 +361,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/v1.6.68.tar.gz",
+                    "url": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v1.6.68.tar.gz",
                     "sha256": "d9db0c0a518aa6ac0359626f222707c6ca1b63a83cbf229d97a5999c9cde347b",
                     "x-checker-data": {
                         "type": "anitya",
@@ -600,7 +600,6 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                /* Same as upstream official builds */
                 "-DWITH_ALEMBIC:BOOL=ON",
                 "-DWITH_ASSERT_ABORT:BOOL=OFF",
                 "-DWITH_BUILDINFO:BOOL=ON",
@@ -652,8 +651,6 @@
                 "-DWITH_CYCLES_CUBIN_COMPILER:BOOL=OFF",
                 "-DCYCLES_CUDA_BINARIES_ARCH:STRING=sm_30;sm_35;sm_37;sm_50;sm_52;sm_60;sm_61;sm_70;sm_75",
                 "-DWITH_CYCLES_DEVICE_OPTIX:BOOL=ON",
-
-                /* Changed from upstream official builds */
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DPYTHON_NUMPY_PATH:PATH=/app/lib/python3.7/site-packages",
                 "-DWITH_DOC_MANPAGE:BOOL=OFF",
