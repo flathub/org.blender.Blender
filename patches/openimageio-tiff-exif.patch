@@ -1,0 +1,33 @@
+--- openimageio/src/libOpenImageIO/exif.cpp-orig	2022-08-12 17:51:14.937707271 -0400
++++ openimageio/src/libOpenImageIO/exif.cpp	2022-08-12 17:52:10.330237468 -0400
+@@ -212,7 +212,9 @@
+ };
+ 
+ 
+-
++// libtiff > 4.1.0 defines these in tiff.h. For older libtiff, let's define
++// them ourselves.
++#ifndef GPSTAG_VERSIONID
+ enum GPSTag {
+     GPSTAG_VERSIONID = 0, 
+     GPSTAG_LATITUDEREF = 1,  GPSTAG_LATITUDE = 2,
+@@ -235,8 +237,9 @@
+     GPSTAG_AREAINFORMATION = 28,
+     GPSTAG_DATESTAMP = 29,
+     GPSTAG_DIFFERENTIAL = 30,
+-    GPSTAG_HPOSITIONINGERROR = 31
++    GPSTAG_GPSHPOSITIONINGERROR = 31
+ };
++#endif
+ 
+ static const EXIF_tag_info gps_tag_table[] = {
+     { GPSTAG_VERSIONID,		"GPS:VersionID",	TIFF_BYTE, 4 }, 
+@@ -270,7 +273,7 @@
+     { GPSTAG_AREAINFORMATION,	"GPS:AreaInformation",	TIFF_UNDEFINED, 1 },
+     { GPSTAG_DATESTAMP,		"GPS:DateStamp",	TIFF_ASCII, 0 },
+     { GPSTAG_DIFFERENTIAL,	"GPS:Differential",	TIFF_SHORT, 1 },
+-    { GPSTAG_HPOSITIONINGERROR,	"GPS:HPositioningError",TIFF_RATIONAL, 1 },
++    { GPSTAG_GPSHPOSITIONINGERROR,	"GPS:HPositioningError",TIFF_RATIONAL, 1 },
+     { -1, NULL }  // signal end of table
+ };
+ 

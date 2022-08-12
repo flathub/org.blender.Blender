@@ -9,8 +9,8 @@ Subject: [PATCH] Add StartupWMClass to .desktop
 
 diff --git a/blender/blender.desktop b/blender/blender.desktop
 index 792f98b..b9d74d9 100644
---- a/blender/blender.desktop
-+++ b/blender/blender.desktop
+--- a/release/fresdesktop/blender.desktop
++++ b/release/freedesktop/blender.desktop
 @@ -87,3 +87,4 @@ PrefersNonDefaultGPU=true
  X-KDE-RunOnDiscreteGpu=true
  Categories=Graphics;3DGraphics;

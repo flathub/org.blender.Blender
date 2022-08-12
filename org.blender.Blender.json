@@ -119,19 +119,142 @@
             ]
         },
         {
+            "name": "yaml-cpp",
+            "buildsystem": "cmake-ninja",
+            "cleanup": [
+                "/include",
+                "/lib/pkgconfig",
+                "/lib/cmake"
+            ],
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS=ON",
+                "-DYAML_BUILD_SHARED_LIBS=ON",
+                "-DYAML_CPP_BUILD_TOOLS=OFF",
+                "-DYAML_CPP_BUILD_TESTS=OFF",
+                "-DYAML_CPP_BUILD_CONTRIB=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/jbeder/yaml-cpp/archive/refs/tags/yaml-cpp-0.7.0.tar.gz",
+                    "sha256": "43e6a9fcb146ad871515f0d0873947e5d497a1c9c60c58cb102a97b47208b7c3"
+                }
+            ]
+        },
+        {
+            "name": "pystring",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/imageworks/pystring/archive/281419de2f91f9e0f2df6acddfea3b06a43436be.tar.gz",
+                    "sha256": "46161e75f85a3e8867233aebb6f4399f405c565db76dc07731a7ef662459609d"
+                },
+                {
+                    "type": "file",
+                    "path": "patches/pystring/CMakeLists.txt"
+                }
+            ]
+        },
+        {
+            "name": "pybind11",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pybind11\" --no-build-isolation"
+            ],
+            "cleanup": [
+               "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/59/f6/aafe0b7e798f25632b199523cce98552fde53e8c552b9d96765426532d5f/pybind11-2.10.0.tar.gz",
+                    "sha256": "18977589c10f595f65ec1be90b0a0763b43e458d25d97be9db75b958eb1f43fe"
+                }
+            ]
+        },
+        {
+            "name": "expat",
+            "//": "expat in the SDK can't be found with opencolorio. Do like Krita",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/libexpat/libexpat/releases/download/R_2_4_8/expat-2.4.8.tar.gz",
+                    "sha256": "398f6d95bf808d3108e27547b372cb4ac8dc2298a3c4251eb7aa3d4c6d4bb3e2"
+                }
+            ]
+        },
+        {
+            "name": "imath",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AcademySoftwareFoundation/Imath/archive/refs/tags/v3.1.3.tar.gz",
+                    "sha256": "0bf7ec51162c4d17a4c5b850fb3f6f7a195cff9fa71f4da7735f74d7b5124320"
+                }
+            ],
+            "cleanup": [
+                "/include/Imath",
+                "/lib/pkgconfig/Imath.pc"
+            ]
+        },
+        {
+            "name": "openexr",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS:BOOL=ON",
+                "-DOPENEXR_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
+                "-DBUILD_TESTING:BOOL=OFF"
+            ],
+            "post-install": [
+                "ln -sf /app/include/Imath/* /app/include/OpenEXR/"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/refs/tags/v3.1.3.tar.gz",
+                    "sha256": "6f70a624d1321319d8269a911c4032f24950cde52e76f46e9ecbebfcb762f28c",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 13289,
+                        "stable-only": true,
+                        "url-template": "https://github.com/AcademySoftwareFoundation/openexr/archive/v$version.tar.gz"
+                    }
+                }
+            ],
+            "cleanup": [
+                "/bin",
+                "/include",
+                "/lib/cmake",
+                "/lib/pkgconfig",
+                "/share/aclocal",
+                "/share/doc",
+                "*.la"
+            ]
+        },
+        {
             "name": "opencolorio",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "build-options" : {
-                "env": {
-                    "CXXFLAGS": "-Wno-error=unused-function -Wno-error=deprecated-declarations -Wno-error=cast-function-type"
-                },
+                "cxxflags": "-Wno-error=unused-function -Wno-error=deprecated-declarations -Wno-error=cast-function-type",
                 "arch" : {
-                    "arm" : {
-                        "config-opts" : [
-                            "-DOCIO_USE_SSE:BOOL=OFF"
-                        ]
-                    },
                     "aarch64" : {
                         "config-opts" : [
                             "-DOCIO_USE_SSE:BOOL=OFF"
@@ -145,25 +268,19 @@
                 "-DOCIO_BUILD_DOCS:BOOL=OFF",
                 "-DOCIO_BUILD_STATIC:BOOL=OFF",
                 "-DOCIO_BUILD_TESTS:BOOL=OFF",
-                "-DOCIO_BUILD_JNIGLUE:BOOL=OFF",
-                "-DOCIO_STATIC_JNIGLUE:BOOL=OFF",
-                "-DPYTHON=/usr/bin/python3"
+                "-DOCIO_INSTALL_EXT_PACKAGES=NONE"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/imageworks/OpenColorIO/archive/v1.1.1.tar.gz",
-                    "sha256": "c9b5b9def907e1dafb29e37336b702fff22cc6306d445a13b1621b8a754c14c8",
+                    "url": "https://github.com/imageworks/OpenColorIO/archive/v2.1.2.tar.gz",
+                    "sha256": "6c6d153470a7dbe56136073e7abea42fa34d06edc519ffc0a159daf9f9962b0b",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 9631,
                         "stable-only": true,
                         "url-template": "https://github.com/imageworks/OpenColorIO/archive/v$version.tar.gz"
                     }
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/OpenColorIO/0001-openColoreIO-Suppress-warnings-as-errors.patch"
                 }
              ],
             "cleanup": [
@@ -175,39 +292,45 @@
             ]
         },
         {
-            "name": "openexr",
-            "buildsystem": "cmake",
+            "name": "pugixml",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "*.a"
+            ],
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DBUILD_SHARED_LIBS:BOOL=ON",
-                "-DILMBASE_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
-                "-DOPENEXR_BUILD_BOTH_STATIC_SHARED:BOOL=OFF",
-                "-DBUILD_TESTING:BOOL=OFF",
-                "-DNAMESPACE_VERSIONING:BOOL=OFF",
-                "-DPYILMBASE_ENABLE:BOOL=OFF"
+                "-DBUILD_TESTING=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/zeux/pugixml",
+                    "tag": "v1.12.1",
+                    "commit": "dd50fa5b45ab8d58d6c27566c2eaf04a8b7e5841"
+                }
+            ]
+        },
+        {
+            "name": "numpy",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/AcademySoftwareFoundation/openexr/archive/v2.4.0.tar.gz",
-                    "sha256": "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1",
-                    "x-checker-data": {
-                        "type": "anitya",
-                        "project-id": 13289,
-                        "stable-only": true,
-                        "url-template": "https://github.com/AcademySoftwareFoundation/openexr/archive/v$version.tar.gz"
-                    }
+                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.17.4.zip",
+                    "sha256": "f58913e9227400f1395c7b800503ebfdb0772f1c33ff8cb4d6451c06cabdf316"
                 }
             ],
             "cleanup": [
                 "/bin",
-                "/include",
-                "/lib/*.la",
-                "/lib/cmake",
-                "/lib/pkgconfig",
-                "/share/aclocal",
-                "/share/doc"
+                "/lib/python3.*/site-packages/numpy/core/include",
+                "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
+                "/lib/python3.*/site-packages/numpy/tests",
+                "/lib/python3.*/site-packages/numpy/*/tests"
             ]
         },
         {
@@ -215,27 +338,67 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DBUILD_TESTING=OFF",
                 "-DOIIO_BUILD_TOOLS:BOOL=OFF",
                 "-DOIIO_BUILD_TESTS:BOOL=OFF",
-                "-DBUILDSTATIC:BOOL=OFF",
+                "-DUSE_EXTERNAL_PUGIXML=ON",
                 "-DINSTALL_DOCS:BOOL=OFF",
                 "-DOpenGL_GL_PREFERENCE:STRING=GLVND",
-                "-DUSE_QT:BOOL=OFF",
+                "-DUSE_DCMTK=OFF",
+                "-DUSE_Libheif=OFF",
+                "-DUSE_LibRaw=OFF",
+                "-DUSE_OPENVDB=OFF",
+                "-DUSE_Ptex=OFF",
+                "-DUSE_Nuke=OFF",
+                "-DUSE_LIBSQUISH=OFF",
+                "-DUSE_QT5=OFF",
                 "-DUSE_PYTHON:BOOL=OFF",
                 "-DUSE_FFMPEG:BOOL=OFF",
                 "-DUSE_OPENCV:BOOL=OFF"
             ],
+            "modules": [
+                {
+                    "name": "fmt",
+                    "buildsystem": "cmake-ninja",
+                    "config-opts": [
+                        "-DFMT_DOC=OFF",
+                        "-DFMT_TEST=OFF"
+                    ],
+                    "sources": [
+                        {
+                            "type": "archive",
+                            "url": "https://github.com/fmtlib/fmt/releases/download/9.0.0/fmt-9.0.0.zip",
+                            "sha256": "fc96dd2d2fdf2bded630787adba892c23cb9e35c6fd3273c136b0c57d4651ad6"
+                        }
+                    ]
+                },
+                {
+                    "name": "robin-map",
+                    "buildsystem": "cmake-ninja",
+                    "sources": [
+                        {
+                            "type": "git",
+                            "url": "https://github.com/Tessil/robin-map.git",
+                            "tag": "v1.0.1"
+                        }
+                    ]
+                }
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/OpenImageIO/oiio/archive/Release-1.8.17.tar.gz",
-                    "sha256": "a019086c05a6150d445a2240bab1723dff540dde5f5c327c36a97f0b5ae0e157",
+                    "url": "https://github.com/OpenImageIO/oiio/archive/refs/tags/v2.3.18.0.tar.gz",
+                    "sha256": "09c7fa0685fdb34f696f2e5d44c2ba2336b5ca6ad8851cb516575508fe06397a",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 2548,
                         "stable-only": true,
-                        "url-template": "https://github.com/OpenImageIO/oiio/archive/v$version.tar.gz"
+                        "url-template": "https://github.com/OpenImageIO/oiio/archive/refs/tags/v$version.tar.gz"
                     }
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/openimageio-jpegturbo.patch"
                 }
             ],
             "cleanup": [
@@ -251,14 +414,15 @@
                 "-DGLEW_LOCATION=/app",
                 "-DNO_EXAMPLES=1",
                 "-DNO_TUTORIALS=1",
+                "-DNO_TESTS=ON",
                 "-DNO_PTEX=1",
                 "-DNO_DOC=1"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_3_3.tar.gz",
-                    "sha256": "2dc81b3a085e692cca3166ac88751e4674a9ddf5b5d7935adf677bb2bd3f2d2f",
+                    "url": "https://github.com/PixarAnimationStudios/OpenSubdiv/archive/v3_4_4.tar.gz",
+                    "sha256": "20d49f80a2b778ad4d01f091ad88d8c2f91cf6c7363940c6213241ce6f1048fb",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 96394,
@@ -287,8 +451,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/Blosc/c-blosc/archive/v1.14.4.tar.gz",
-                    "sha256": "42a85de871d142cdc89b607a90cceeb0eab60d995f6fae8d44aae397ab414002"
+                    "url": "https://github.com/Blosc/c-blosc/archive/refs/tags/v1.21.1.tar.gz",
+                    "sha256": "f387149eab24efa01c308e4cba0f59f64ccae57292ec9c794002232f7903b55b"
                 }
             ],
             "cleanup": [
@@ -298,23 +462,44 @@
             ]
         },
         {
-            "name": "openvdb",
-            "subdir": "openvdb",
-            "buildsystem": "simple",
-            "build-commands": [
-                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= GLFW_INCL_DIR= PYTHON_VERSION= DOXYGEN= install"
+            "name": "glfw",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DBUILD_SHARED_LIBS:BOOL=ON"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/v5.1.0.tar.gz",
-                    "sha256": "eb5a8011732bcdeb115de9a38f640ee376bcb85b54e060d3b1ab08f9dc92f40b"
+                    "url": "https://github.com/glfw/glfw/releases/download/3.3.4/glfw-3.3.4.zip",
+                    "sha256": "bbd2c42c660b725e9755eb417e40b373f0d4c03138c9b2e210d02cd308bd99cd"
+                }
+            ],
+            "cleanup": [
+                "/include",
+                "/lib/cmake",
+                "/lib/pkgconfig"
+            ]
+        },
+        {
+            "name": "openvdb",
+            "subdir": "openvdb",
+            "buildsystem": "simple",
+            "build-commands": [
+                "make lib HDSO=/app/lib HT=/app DESTDIR=/app LOG4CPLUS_INCL_DIR= GLFW_INCL_DIR= PYTHON_VERSION= DOXYGEN= HALF_LIB=-lImath install_lib"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/AcademySoftwareFoundation/openvdb/archive/v7.0.0.tar.gz",
+                    "sha256": "97bc8ae35ef7ccbf49a4e25cb73e8c2eccae6b235bac86f2150707efcd1e910d"
                 }
             ],
             "cleanup": [
                 "/bin",
                 "/include",
-                "/lib/*.a"
+                "*.a"
             ]
         },
         {
@@ -333,14 +518,13 @@
                 "-DUSE_STATIC_HDF5:BOOL=OFF",
                 "-DUSE_TESTS:BOOL=OFF",
                 "-DALEMBIC_ILMBASE_LINK_STATIC:BOOL=OFF",
-                "-DALEMBIC_SHARED_LIBS:BOOL=OFF",
                 "-DALEMBIC_SHARED_LIBS:BOOL=ON"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/alembic/alembic/archive/1.7.12.tar.gz",
-                    "sha256": "6c603b87c9a3eaa13618e577dd9ef5277018cdcd09ac82d3c196ad8bed6a1b48"
+                    "url": "https://github.com/alembic/alembic/archive/1.8.3.tar.gz",
+                    "sha256": "b0bc74833bff118a869e81e6acb810a58797e77ef63143954b2f8e817c7f65cb"
                 }
             ],
             "cleanup": [
@@ -369,6 +553,10 @@
                         "stable-only": true,
                         "url-template": "https://github.com/KhronosGroup/OpenCOLLADA/archive/refs/tags/v$version.tar.gz"
                     }
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/OpenCOLLADA-pcre.patch"
                 }
             ],
             "cleanup": [
@@ -399,7 +587,7 @@
             "cleanup": [
                 "/bin",
                 "/include",
-                "/lib/*.a",
+                "*.a",
                 "/lib/cmake",
                 "/share/doc"
             ]
@@ -502,27 +690,6 @@
             ]
         },
         {
-            "name": "numpy",
-            "buildsystem": "simple",
-            "build-commands": [
-                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.17.4.zip",
-                    "sha256": "f58913e9227400f1395c7b800503ebfdb0772f1c33ff8cb4d6451c06cabdf316"
-                }
-            ],
-            "cleanup": [
-                "/bin",
-                "/lib/python3.*/site-packages/numpy/core/include",
-                "/lib/python3.*/site-packages/numpy/core/lib/libnpymath.a",
-                "/lib/python3.*/site-packages/numpy/tests",
-                "/lib/python3.*/site-packages/numpy/*/tests"
-            ]
-        },
-        {
             "name": "certifi",
             "buildsystem": "simple",
             "build-commands": [
@@ -596,6 +763,21 @@
             ]
         },
         {
+            "name": "embree",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DEMBREE_ISPC_SUPPORT=OFF",
+                "-DEMBREE_TUTORIALS=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/embree/embree/archive/refs/tags/v3.13.4.tar.gz",
+                    "sha256": "e6a8d1d4742f60ae4d936702dd377bc4577a3b034e2909adb2197d0648b1cb35"
+                }
+            ]
+        },
+        {
             "name": "blender",
             "buildsystem": "cmake-ninja",
             "builddir": true,
@@ -655,7 +837,10 @@
 
                 /* Changed from upstream official builds */
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DPYTHON_NUMPY_PATH:PATH=/app/lib/python3.7/site-packages",
+                "-DPYTHON_NUMPY_PATH:PATH=/app/lib/python3.9/site-packages",
+                "-DPYTHON_NUMPY_INCLUDE_DIRS=/app/lib/python3.9/site-packages/numpy/core/include",
+                "-DPYTHON_LIBRARY=/usr/lib/python3.9",
+                "-DPYTHON_INCLUDE_DIR=/usr/include/python3.9",
                 "-DWITH_DOC_MANPAGE:BOOL=OFF",
                 "-DWITH_INPUT_NDOF:BOOL=OFF",
                 "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
@@ -679,7 +864,7 @@
                 },
                 {
                     "type": "patch",
-                    "path": "blender-desktop-add-wm-class.patch"
+                    "path": "patches/blender-desktop-add-wm-class.patch"
                 },
                 {
                     "type": "file",

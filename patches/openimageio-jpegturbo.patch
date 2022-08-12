@@ -1,0 +1,17 @@
+--- openimageio/src/cmake/externalpackages.cmake-orig	2022-08-13 00:03:43.234467212 -0400
++++ openimageio/src/cmake/externalpackages.cmake	2022-08-13 00:04:08.215721561 -0400
+@@ -120,10 +120,10 @@
+ 
+ 
+ # JPEG -- prefer Turbo-JPEG to regular libjpeg
+-checked_find_package (JPEGTurbo
+-                      DEFINITIONS -DUSE_JPEG_TURBO=1
+-                      PRINT       JPEG_INCLUDES JPEG_INCLUDE_DIRS
+-                                  JPEG_LIBRARIES JPEG_VERSION)
++#checked_find_package (JPEGTurbo
++#                      DEFINITIONS -DUSE_JPEG_TURBO=1
++#                      PRINT       JPEG_INCLUDES JPEG_INCLUDE_DIRS
++#                                  JPEG_LIBRARIES JPEG_VERSION)
+ if (NOT JPEG_FOUND) # Try to find the non-turbo version
+     checked_find_package (JPEG REQUIRED)
+ endif ()
