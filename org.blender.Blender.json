@@ -281,6 +281,10 @@
                         "stable-only": true,
                         "url-template": "https://github.com/imageworks/OpenColorIO/archive/v$version.tar.gz"
                     }
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/opencolorio-build.patch"
                 }
              ],
             "cleanup": [
