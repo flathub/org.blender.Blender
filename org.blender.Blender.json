@@ -320,13 +320,20 @@
             "name": "numpy",
             "buildsystem": "simple",
             "build-commands": [
-                "/usr/bin/pip3 install --prefix=/app --no-deps --verbose ."
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"numpy\" --no-build-isolation"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://files.pythonhosted.org/packages/source/n/numpy/numpy-1.17.4.zip",
-                    "sha256": "f58913e9227400f1395c7b800503ebfdb0772f1c33ff8cb4d6451c06cabdf316"
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/6f/7b/036000a55680e6c7eb81502b0aa27ce0ed65d4d8805613909967d9f8baf6/numpy-1.21.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+                    "sha256": "5f30427731561ce75d7048ac254dbe47a2ba576229250fb60f0fb74db96501a1",
+                    "only-arches": [ "x86_64" ]
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/57/ba/d8cbdfd507b541bb247beff24d9d7304ac8ffc379cf585701187d45d4512/numpy-1.21.6-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
+                    "sha256": "f17e562de9edf691a42ddb1eb4a5541c20dd3f9e65b09ded2beb0799c0cf29bb",
+                    "only-arches": [ "aarch64" ]
                 }
             ],
             "cleanup": [
@@ -843,16 +850,14 @@
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DPYTHON_NUMPY_PATH:PATH=/app/lib/python3.10/site-packages",
                 "-DPYTHON_NUMPY_INCLUDE_DIRS=/app/lib/python3.10/site-packages/numpy/core/include",
-                "-DPYTHON_LIBRARY=/usr/lib/python3.10",
                 "-DPYTHON_INCLUDE_DIR=/usr/include/python3.10",
                 "-DWITH_DOC_MANPAGE:BOOL=OFF",
                 "-DWITH_INPUT_NDOF:BOOL=OFF",
-                "-DWITH_INSTALL_PORTABLE:BOOL=OFF",
-                "-DWITH_JACK:BOOL=OFF",
-                "-DWITH_PYTHON_INSTALL:BOOL=OFF"
+                "-DWITH_PYTHON_INSTALL:BOOL=OFF",
+                "-DWITH_INSTALL_PORTABLE:BOOL=OFF"
             ],
             "post-install": [
-                "install -Dm644 ../org.blender.Blender.appdata.xml -t /app/share/appdata"
+                "install -Dm644 ../release/freedesktop/org.blender.Blender.appdata.xml -t $FLATPAK_DEST/share/appdata"
             ],
             "sources": [
                 {
@@ -867,12 +872,17 @@
                     }
                 },
                 {
-                    "type": "patch",
-                    "path": "patches/blender-desktop-add-wm-class.patch"
+                    "type": "git",
+                    "dest": "release/datafiles/locale",
+                    "url": "https://github.com/blender/blender-translations.git",
+                    "commit": "71e0f87"
                 },
                 {
-                    "type": "file",
-                    "path": "org.blender.Blender.appdata.xml"
+                    "type": "patch",
+                    "paths": [
+                        "patches/blender-appdata.patch",
+                        "patches/blender-desktop-add-wm-class.patch"
+                    ]
                 }
             ],
             "cleanup": [

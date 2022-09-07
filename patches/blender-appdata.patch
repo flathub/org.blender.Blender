@@ -1,0 +1,10 @@
+--- blender-3/release/freedesktop/org.blender.Blender.appdata.xml-orig	2022-09-06 21:32:05.741627312 -0400
++++ blender-3/release/freedesktop/org.blender.Blender.appdata.xml	2022-09-06 21:33:07.907267600 -0400
+@@ -39,6 +39,7 @@
+             <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
+         </screenshot>
+     </screenshots>
++    <content_rating type="oars-1.1"/>
+     <releases>
+         <release version="3.2" date="2022-06-08">
+             <description>
