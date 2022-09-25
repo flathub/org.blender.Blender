@@ -320,20 +320,13 @@
             "name": "numpy",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"numpy\" --no-build-isolation"
+                "python3 setup.py install --prefix=/app"
             ],
             "sources": [
                 {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/6f/7b/036000a55680e6c7eb81502b0aa27ce0ed65d4d8805613909967d9f8baf6/numpy-1.21.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
-                    "sha256": "5f30427731561ce75d7048ac254dbe47a2ba576229250fb60f0fb74db96501a1",
-                    "only-arches": [ "x86_64" ]
-                },
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/57/ba/d8cbdfd507b541bb247beff24d9d7304ac8ffc379cf585701187d45d4512/numpy-1.21.6-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl",
-                    "sha256": "f17e562de9edf691a42ddb1eb4a5541c20dd3f9e65b09ded2beb0799c0cf29bb",
-                    "only-arches": [ "aarch64" ]
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/45/b7/de7b8e67f2232c26af57c205aaad29fe17754f793404f59c8a730c7a191a/numpy-1.21.6.zip",
+                    "sha256": "ecb55251139706669fdec2ff073c98ef8e9a84473e51e716211b41aa0f18e656"
                 }
             ],
             "cleanup": [
@@ -788,6 +781,7 @@
                 }
             ]
         },
+        "python3-zstandard.json",
         {
             "name": "blender",
             "buildsystem": "cmake-ninja",

@@ -1,0 +1,14 @@
+{
+    "name": "python3-zstandard",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"zstandard\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/a7/b7/0fe8fb6390309f29a3a76c439dd08a73c05473bbaafa7117596ded319f84/zstandard-0.18.0.tar.gz",
+            "sha256": "0ac0357a0d985b4ff31a854744040d7b5754385d1f98f7145c30e02c6865cb6f"
+        }
+    ]
+}
