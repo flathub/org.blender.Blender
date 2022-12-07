@@ -129,6 +129,23 @@
             ]
         },
         {
+            "name": "libdecor",
+            "buildsystem": "meson",
+            "build-options": {
+                "config-opts": [
+                    "-Ddemo=false"
+                ]
+            },
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/jadahl/libdecor.git",
+                    "commit": "4db201134ab51950a1c673d77d7c4f2f7c7b48fd",
+                    "tag": "0.1.1"
+                }
+            ]
+        },
+        {
             "name": "blender",
             "buildsystem": "simple",
             "build-commands": [
