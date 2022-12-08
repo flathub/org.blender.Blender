@@ -32,6 +32,7 @@
         "mkdir -p /app/lib/ffmpeg"
     ],
     "modules": [
+        "shared-modules/libdecor/libdecor-0.1.1.json",
         {
             "name": "x264",
             "config-opts": [
@@ -126,23 +127,6 @@
                 "/lib/codecs/include",
                 "/lib/codecs/lib/pkgconfig",
                 "/lib/codecs/share"
-            ]
-        },
-        {
-            "name": "libdecor",
-            "buildsystem": "meson",
-            "build-options": {
-                "config-opts": [
-                    "-Ddemo=false"
-                ]
-            },
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/jadahl/libdecor.git",
-                    "commit": "4db201134ab51950a1c673d77d7c4f2f7c7b48fd",
-                    "tag": "0.1.1"
-                }
             ]
         },
         {
