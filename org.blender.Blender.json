@@ -1,12 +1,13 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "21.08",
+    "runtime-version": "22.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=wayland",
+        "--socket=fallback-x11",
         "--socket=pulseaudio",
         "--device=dri",
         "--share=network",
@@ -23,7 +24,7 @@
         },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
-            "version": "21.08",
+            "version": "22.08",
             "add-ld-path": "."
         }
     },
@@ -31,6 +32,7 @@
         "mkdir -p /app/lib/ffmpeg"
     ],
     "modules": [
+        "shared-modules/libdecor/libdecor-0.1.1.json",
         {
             "name": "x264",
             "config-opts": [
@@ -143,8 +145,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.3/blender-3.3.1-linux-x64.tar.xz",
-                    "sha256": "3089a485dd621785d7a702089aba72d07b8f733a362e901ec1449b9a379546f2",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.4/blender-3.4.0-linux-x64.tar.xz",
+                    "sha256": "f9aaf69339e4aad3b7927a4cf7ba372453e393df662c92bc1fedf94e0c6b5382",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
