@@ -12,6 +12,8 @@
         "--device=dri",
         "--share=network",
         "--filesystem=host",
+        "--filesystem=/run/spnav.sock:ro",
+        "--env=SPNAV_SOCKET=/run/spnav.sock",
         "--env=TMP_DIR=/tmp",
         "--env=TMP=/tmp"
     ],
