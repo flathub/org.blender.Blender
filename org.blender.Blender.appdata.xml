@@ -3,6 +3,7 @@
     <id>org.blender.Blender</id>
     <launchable type="desktop-id">org.blender.Blender.desktop</launchable>
     <name>Blender</name>
+    <developer_name>Blender Foundation</developer_name>
     <summary>Free and open source 3D creation suite</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0</project_license>
