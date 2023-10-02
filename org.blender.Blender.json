@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "22.08",
+    "runtime-version": "23.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
@@ -26,7 +26,7 @@
         },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
-            "version": "22.08",
+            "version": "23.08",
             "add-ld-path": "."
         }
     },
@@ -34,7 +34,7 @@
         "mkdir -p /app/lib/ffmpeg"
     ],
     "modules": [
-        "shared-modules/libdecor/libdecor-0.1.1.json",
+        "shared-modules/libdecor/libdecor-0.2.0.json",
         {
             "name": "x264",
             "config-opts": [
@@ -116,7 +116,8 @@
                 "--enable-decoder=mp3",
                 "--enable-decoder=mpeg4",
                 "--enable-decoder=pcm_s16le",
-                "--enable-decoder=theora"
+                "--enable-decoder=theora",
+                "--disable-inline-asm"
             ],
             "sources": [
                 {
