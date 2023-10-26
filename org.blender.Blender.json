@@ -116,14 +116,17 @@
                 "--enable-decoder=mp3",
                 "--enable-decoder=mpeg4",
                 "--enable-decoder=pcm_s16le",
-                "--enable-decoder=theora",
-                "--disable-inline-asm"
+                "--enable-decoder=theora"
             ],
             "sources": [
                 {
                     "type": "archive",
                     "url": "https://www.ffmpeg.org/releases/ffmpeg-6.0.tar.xz",
                     "sha256": "57be87c22d9b49c112b6d24bc67d42508660e6b718b3db89c44e47e289137082"
+                },
+                {
+                    "type": "patch",
+                    "path": "ffmpeg-binutils.patch"
                 }
             ],
             "cleanup": [
@@ -148,8 +151,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.6/blender-3.6.4-linux-x64.tar.xz",
-                    "sha256": "4bb18d9043dcb3a8ff5ffbd56e5a783c78184d65de51cc522901a8f47ba130a9",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender3.6/blender-3.6.5-linux-x64.tar.xz",
+                    "sha256": "05b2e56249a92b856c8b7b4d77c65e245702aaa81d9b4f34734ec09bbcedf42b",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
