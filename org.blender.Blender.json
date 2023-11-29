@@ -42,7 +42,7 @@
                 "--enable-lto",
                 "--enable-pic",
                 "--enable-shared",
-                "--disable-cli"
+                ""
             ],
             "sources": [
                 {
