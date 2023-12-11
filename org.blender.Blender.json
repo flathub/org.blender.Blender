@@ -134,12 +134,6 @@
         },
         {
             "name": "libxcrypt",
-            "build-option":{
-                "env": {
-                    "LIBRARY_PATH": "/app/lib:/usr/lib",
-                    "LD_LIBRARY_PATH": "/app/lib:/usr/lib"
-                }
-            },
             "config-opts": [
                 "--prefix=/app",
                 "--enable-shared",
