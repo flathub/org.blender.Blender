@@ -73,6 +73,7 @@
             "-DENABLE_DRI3=ON",
             "-DENABLE_WAYLAND=ON",
             "-DENABLE_VA=ON",
+            "-DENABLE_X11=ON"
             ],
          "sources":[
             {
@@ -98,7 +99,8 @@
             "-DENABLE_VA=ON",
             "-DENABLE_DRM=ON",
             "-DENABLE_WAYLAND=ON",
-            "-DENABLE_X11=ON"
+            "-DENABLE_X11=ON",
+            "-DENABLE_DRI3=ON"
          ],
          "sources":[
             {
