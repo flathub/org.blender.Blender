@@ -68,34 +68,17 @@
             "-DCMAKE_BUILD_TYPE=Release",
             "-DBUILD_SAMPLES=OFF",
             "-DBUILD_TESTS=OFF",
-            "-DBUILD_TOOLS=OFF"
-         ],
+            "-DBUILD_TOOLS=OFF",
+            "-DENABLE_DRM=ON",
+            "-DENABLE_DRI3=ON",
+            "-DENABLE_WAYLAND=ON",
+            "-DENABLE_VA=ON"
+            ],
          "sources":[
             {
                "type":"archive",
                "url":"https://github.com/oneapi-src/oneVPL-intel-gpu/archive/intel-onevpl-24.1.3.tar.gz",
                "sha256":"15d34e4304d7aeb5ea5e529b6f51171109cef42525113321f675bc14e56c697e"
-            }
-         ]
-      },
-      {
-         "name":"oneapi-libvpl",
-         "skip-arches":[
-            "aarch64"
-         ],
-         "buildsystem":"cmake-ninja",
-         "builddir":true,
-         "config-opts":[
-            "-DCMAKE_BUILD_TYPE=Release",
-            "-DBUILD_SAMPLES=OFF",
-            "-DBUILD_TESTS=OFF",
-            "-DBUILD_TOOLS=OFF"
-         ],
-         "sources":[
-            {
-               "type":"archive",
-               "url": "https://github.com/oneapi-src/oneVPL/archive/refs/tags/v2023.3.1.zip",
-               "sha256":"ea8d4ae355f14b0f40a8dfb1035ed1ebc2a4827e5447845d9a97d4bd466812bc"
             }
          ]
       },
