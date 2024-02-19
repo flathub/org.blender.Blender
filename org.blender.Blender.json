@@ -95,7 +95,7 @@
             "-DBUILD_SAMPLES=OFF",
             "-DBUILD_TESTS=OFF",
             "-DBUILD_TOOLS=OFF",
-            "-DBUILD_DISPATCHER",
+            "-DBUILD_DISPATCHER=ON",
             "-DENABLE_VA=ON",
             "-DENABLE_DRM=ON",
             "-DENABLE_WAYLAND=ON",
