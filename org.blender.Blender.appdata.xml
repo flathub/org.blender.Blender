@@ -42,6 +42,27 @@
     </screenshots>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="4.1.0" date="2024-03-26">
+            <description>
+                <p>New features:</p>
+                <ul>
+                    <li>Geometry nodes can now be baked &amp; New Geometry nodes</li>
+                    <li>New Smooth by Angle modifier replaced Auto Smooth</li>
+                    <li>OpenImageDenoise is now GPU accelerated</li>
+                    <li>A new way for inserting animation keyframes and generating motion paths</li>
+                    <li>New graph editor operators &amp; bake channels</li>
+                    <li>More USD features &amp; VFX Reference Platform 2024 compliance</li>
+                </ul>
+                <p>Enhancements:</p>
+                <ul>
+                    <li>The viewport compositor now supports more nodes</li>
+                    <li>Faster video sequencer with improved image filtering</li>
+                    <li>AMD GPU rendering support added for RDNA3 generation APUs</li>
+                    <li>Linux CPU rendering performance was improved by about 5% across benchmarks</li>
+                    <li>Better bone collections, switch bones while weight painting</li>
+                </ul>
+            </description>
+        </release>
         <release version="4.0.2" date="2023-12-05"/>
         <release version="4.0.1" date="2023-11-17"/>
         <release version="4.0.0" date="2023-11-14"/>
