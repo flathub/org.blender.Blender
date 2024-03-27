@@ -49,7 +49,7 @@
                 {
                     "type": "git",
                     "url": "https://code.videolan.org/videolan/x264.git",
-                    "commit": "baee400fa9ced6f5481a728138fed6e867b0ff7f"
+                    "commit": "31e19f92f00c7003fa115047ce50978bc98c3a0d"
                 }
             ],
             "cleanup": [
@@ -122,8 +122,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.ffmpeg.org/releases/ffmpeg-6.1.tar.xz",
-                    "sha256": "488c76e57dd9b3bee901f71d5c95eaf1db4a5a31fe46a28654e837144207c270"
+                    "url": "https://www.ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz",
+                    "sha256": "8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968"
                 }
             ],
             "cleanup": [
@@ -163,8 +163,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.0/blender-4.0.2-linux-x64.tar.xz",
-                    "sha256": "5583a5588736da8858c522ef17fff5d73be59c47a6fe91ad29c6f3263e22086a",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.1/blender-4.1.0-linux-x64.tar.xz",
+                    "sha256": "d2ac5390f4a9cb9416c8eb23bdd8fa8e49e68165a889575fd8f56563f5cccaf1",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
@@ -182,10 +182,6 @@
                 {
                     "type": "file",
                     "path": "org.blender.Blender.appdata.xml"
-                },
-                {
-                    "type": "patch",
-                    "path": "blender-desktop-add-wm-class.patch"
                 },
                 {
                     "type": "script",
