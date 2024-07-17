@@ -42,6 +42,23 @@
     </screenshots>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="4.2.0" date="2024-07-16">
+            <description>
+                <p>Enhancements:</p>
+                <ul>
+                    <li>EEVEE has been completely rewritten from scratch to allow global illumination, displacement, better SSS, viewport motion blur, and more.</li>
+                    <li>Cycles has been upgraded to make your renders look better and faster.</li>
+                    <li>Add-ons and themes have received a significant overhaul and are now unified as Extensions.</li>
+                    <li>A new community-managed website for sharing and discovering Blender extensions.</li>
+                    <li>Khronos PBR Neutral Tone Mapper has been added.</li>
+                    <li>Polyline has been added to the family of gestures (lasso, box, and line).</li>
+                    <li>A new socket type for matrices is available for transformations using nodes.</li>
+                    <li>It is now possible to use Node Tools with information about the viewport and mouse position in the node tree.</li>
+                    <li>The Video Sequencer has updated its design, tools, and performance.</li>
+                    <li>Collections can now specify their own exporters, making it easier to repeatedly export assets, such as glTF or USD, for studio pipelines.</li>
+                </ul>
+            </description>
+        </release>
         <release version="4.1.1" date="2024-04-16"/>
         <release version="4.1.0" date="2024-03-26">
             <description>
