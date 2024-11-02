@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "23.08",
+    "runtime-version": "24.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
@@ -27,7 +27,7 @@
         },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
-            "version": "23.08",
+            "version": "24.08",
             "add-ld-path": "."
         }
     },
@@ -163,8 +163,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.2/blender-4.2.2-linux-x64.tar.xz",
-                    "sha256": "443c5fcbb929a54afad339c8f445b2620b00c2be173d68158ccb4f62f81ca9d7",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz",
+                    "sha256": "3a64efd1982465395abab4259b4091d5c8c56054c7267e9633e4f702a71ea3f4",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
