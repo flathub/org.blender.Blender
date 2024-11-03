@@ -42,6 +42,9 @@
     </screenshots>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="4.2.3" date="2024-10-15">
+            <url type="details">https://www.blender.org/download/lts/4-2/</url>
+        </release>
         <release version="4.2.2" date="2024-09-24">
             <description></description>
         </release>
