@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
+<component type="desktop-application">
     <id>org.blender.Blender</id>
-    <launchable type="desktop-id">org.blender.Blender.desktop</launchable>
-    <name>Blender</name>
-    <developer_name>Blender Foundation</developer_name>
-    <summary>Free and open source 3D creation suite</summary>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0</project_license>
+    <name>Blender</name>
+    <summary>Free and open source 3D creation suite</summary>
+    <developer id="org.blender">
+        <name>Blender Foundation</name>
+    </developer>
     <description>
         <p>
             Blender is the free and open source 3D creation suite. It supports
@@ -22,6 +23,12 @@
             the list goes on.
         </p>
     </description>
+    <launchable type="desktop-id">org.blender.Blender.desktop</launchable>
+    <branding>
+    <color type="primary" scheme_preference="light">#eeeeee</color>
+    <color type="primary" scheme_preference="dark">#313131</color>
+    </branding>
+    <content_rating type="oars-1.1"/>
     <url type="homepage">https://www.blender.org</url>
     <url type="help">https://www.blender.org/support/</url>
     <url type="bugtracker">https://developer.blender.org</url>
@@ -40,17 +47,12 @@
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
         </screenshot>
     </screenshots>
-    <content_rating type="oars-1.1"/>
     <releases>
         <release version="4.2.3" date="2024-10-15">
             <url type="details">https://www.blender.org/download/lts/4-2/</url>
         </release>
-        <release version="4.2.2" date="2024-09-24">
-            <description></description>
-        </release>
-        <release version="4.2.1" date="2024-08-20">
-            <description/>
-        </release>
+        <release version="4.2.2" date="2024-09-24"/>
+        <release version="4.2.1" date="2024-08-20"/>
         <release version="4.2.0" date="2024-07-16">
             <description>
                 <p>Enhancements:</p>
