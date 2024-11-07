@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "23.08",
+    "runtime-version": "24.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
@@ -122,8 +122,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz",
-                    "sha256": "8684f4b00f94b85461884c3719382f1261f0d9eb3d59640a1f4ac0873616f968"
+                    "url": "https://www.ffmpeg.org/releases/ffmpeg-6.1.2.tar.xz",
+                    "sha256": "3b624649725ecdc565c903ca6643d41f33bd49239922e45c9b1442c63dca4e38"
                 }
             ],
             "cleanup": [
@@ -158,13 +158,13 @@
                 "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
                 "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
                 "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
-                "install -Dm644 $FLATPAK_ID.appdata.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
+                "install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.2/blender-4.2.2-linux-x64.tar.xz",
-                    "sha256": "443c5fcbb929a54afad339c8f445b2620b00c2be173d68158ccb4f62f81ca9d7",
+                    "url": "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz",
+                    "sha256": "3a64efd1982465395abab4259b4091d5c8c56054c7267e9633e4f702a71ea3f4",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
@@ -181,7 +181,7 @@
                 },
                 {
                     "type": "file",
-                    "path": "org.blender.Blender.appdata.xml"
+                    "path": "org.blender.Blender.metainfo.xml"
                 },
                 {
                     "type": "script",
