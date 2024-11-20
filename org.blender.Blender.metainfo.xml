@@ -49,7 +49,7 @@
     </screenshots>
     <releases>
         <release version="4.3.0" date="2024-11-19">
-            <description></description>
+            <url type="details">https://www.blender.org/download/releases/4-3/</url>
         </release>
         <release version="4.2.3" date="2024-10-15">
             <url type="details">https://www.blender.org/download/lts/4-2/</url>
