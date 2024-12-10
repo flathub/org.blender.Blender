@@ -48,6 +48,9 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="4.3.1" date="2024-12-10">
+            <description></description>
+        </release>
         <release version="4.3.0" date="2024-11-19">
             <url type="details">https://www.blender.org/download/releases/4-3/</url>
         </release>
