@@ -4,16 +4,15 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0</project_license>
     <name>Blender</name>
-    <summary>Free and open source 3D creation suite</summary>
+    <summary>Model, animate, rig, & more in 3D</summary>
     <developer id="org.blender">
         <name>Blender Foundation</name>
     </developer>
     <description>
         <p>
-            Blender is the free and open source 3D creation suite. It supports
-            the entirety of the 3D pipeline — modeling, rigging, animation,
-            simulation, rendering, compositing, motion tracking, and video
-            editing.
+            The free and open source 3D creation suite that supports the entirety of 
+            the 3D pipeline: modeling, rigging, animation, simulation, rendering, 
+            compositing, motion tracking, and video editing.
         </p>
 
         <p>
