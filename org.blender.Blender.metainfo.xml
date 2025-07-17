@@ -47,6 +47,30 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="4.5.0" date="2025-07-15">
+            <description>
+                <p>New features:</p>
+                <ul>
+                    <li>Full Vulkan support with major improvements for performance and compatibility</li>
+                    <li>Faster startup times and multi-threaded shader compilation</li>
+                    <li>Enhanced Geometry Nodes with support for importing multiple file formats (CSV, PLY, VDB, STL, OBJ, TXT)</li>
+                    <li>New Point Cloud object type for representing large numbers of individual points in 3D space</li>
+                    <li>Improved Compositor with procedural texture nodes and common nodes from Shader and Geometry Nodes</li>
+                    <li>Grease Pencil render pass and supersampling anti-aliasing (SSAA) for better line quality</li>
+                    <li>UV visibility in all object modes, not just Edit Mode</li>
+                    <li>Enhanced Video Sequencer with HDR support and improved cache</li>
+                    <li>Shadow terminator bias in EEVEE to eliminate self-shadowing artifacts</li>
+                    <li>Color randomization in Sculpt, Vertex Paint, and Texture Paint modes</li>
+                </ul>
+                <p>Performance improvements:</p>
+                <ul>
+                    <li>Geometry Nodes attribute domain interpolation up to 7x faster</li>
+                    <li>Liquid simulation up to 1.5x faster</li>
+                    <li>Faster texture loading and optimized startup process</li>
+                    <li>Improved trimming performance in Sculpt mode with new Manifold solver</li>
+                </ul>
+            </description>
+        </release>
         <release version="4.4.3" date="2025-04-29">
             <description></description>
         </release>
