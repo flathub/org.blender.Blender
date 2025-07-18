@@ -33,7 +33,8 @@
         }
     },
     "cleanup-commands": [
-        "mkdir -p /app/lib/ffmpeg"
+        "mkdir -p /app/lib/ffmpeg",
+        "mkdir -p /app/share/vulkan/implicit_layer.d/"
     ],
     "modules": [
         "shared-modules/libdecor/libdecor-0.2.0.json",
