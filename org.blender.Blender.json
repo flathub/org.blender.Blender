@@ -17,7 +17,8 @@
         "--env=SPNAV_SOCKET=/run/spnav.sock",
         "--env=TMP_DIR=/tmp",
         "--env=TMP=/tmp",
-        "--env=LD_LIBRARY_PATH=/app/lib"
+        "--env=VK_ICD_FILENAMES=/app/lib/GL/vulkan/icd.d",
+        "--env=LD_LIBRARY_PATH=/app/lib:/app/lib/GL/default/lib"
     ],
     "add-extensions": {
         "org.blender.Blender.Codecs": {
@@ -30,6 +31,16 @@
             "directory": "lib/ffmpeg",
             "version": "23.08",
             "add-ld-path": "."
+        },
+        "org.freedesktop.Platform.GL": {
+            "directory": "lib/GL",
+            "versions": "1.4;24.08",
+            "subdirectories": true,
+            "add-ld-path": "lib:default/lib",
+            "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;lib/dri",
+            "download-if": "active-gl-driver",
+            "enable-if": "active-gl-driver",
+            "autoprune-unless": "active-gl-driver"
         }
     },
     "cleanup-commands": [
@@ -159,7 +170,8 @@
                 "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
                 "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
                 "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
-                "install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml"
+                "install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml",
+                "mkdir -p /app/lib/GL"
             ],
             "sources": [
                 {
