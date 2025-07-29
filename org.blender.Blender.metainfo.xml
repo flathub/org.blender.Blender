@@ -47,6 +47,9 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="4.5.1" date="2025-07-29">
+            <description></description>
+        </release>
         <release version="4.5.0" date="2025-07-15">
             <description>
                 <p>New features:</p>
@@ -72,7 +75,7 @@
             </description>
         </release>
         <release version="4.4.3" date="2025-04-29">
-            <description></description>
+            <description/>
         </release>
         <release version="4.4.0" date="2025-03-18">
             <description/>
