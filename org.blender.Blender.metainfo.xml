@@ -35,15 +35,19 @@
     <screenshots>
         <screenshot type="default">
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_1.jpg</image>
+            <caption>Blender sculpting panel</caption>
         </screenshot>
         <screenshot>
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_2.jpg</image>
+            <caption>Blender 3D modeling on edit mode</caption>
         </screenshot>
         <screenshot>
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_3.jpg</image>
+            <caption>Blender animation panel</caption>
         </screenshot>
         <screenshot>
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
+            <caption>Blender image and video compositing</caption>
         </screenshot>
     </screenshots>
     <releases>
