@@ -54,8 +54,9 @@
         <release version="4.5.1" date="2025-07-29">
             <description>
                 <p>Released on July 29th 2025, Blender 4.5.1 features 89 bug fixes.</p>
-                <p>For more details, see: <url>https://developer.blender.org/docs/release_notes/4.5/corrective_releases/#blender-451</url></p>
+                <p>For more details, see:</p>
             </description>
+            <url>https://developer.blender.org/docs/release_notes/4.5/corrective_releases/#blender-451</url>
         </release>
         <release version="4.5.0" date="2025-07-15">
             <description>
