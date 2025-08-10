@@ -35,18 +35,29 @@
     <screenshots>
         <screenshot type="default">
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_1.jpg</image>
+            <caption>Blender sculpting panel</caption>
         </screenshot>
         <screenshot>
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_2.jpg</image>
+            <caption>Blender 3D modeling on edit mode</caption>
         </screenshot>
         <screenshot>
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_3.jpg</image>
+            <caption>Blender animation panel</caption>
         </screenshot>
         <screenshot>
             <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
+            <caption>Blender image and video compositing</caption>
         </screenshot>
     </screenshots>
     <releases>
+        <release version="4.5.1" date="2025-07-29">
+            <description>
+                <p>Released on July 29th 2025, Blender 4.5.1 features 89 bug fixes.</p>
+                <p>For more details, see:</p>
+            </description>
+            <url>https://developer.blender.org/docs/release_notes/4.5/corrective_releases/#blender-451</url>
+        </release>
         <release version="4.5.0" date="2025-07-15">
             <description>
                 <p>New features:</p>
