@@ -29,7 +29,7 @@
         },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
-            "version": "23.08",
+            "version": "24.08",
             "add-ld-path": "."
         },
         "org.freedesktop.Platform.GL": {
@@ -47,7 +47,6 @@
         "mkdir -p /app/lib/ffmpeg"
     ],
     "modules": [
-        "shared-modules/libdecor/libdecor-0.2.0.json",
         {
             "name": "x264",
             "config-opts": [
@@ -176,8 +175,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/release/Blender4.5/blender-4.5.2-linux-x64.tar.xz",
-                    "sha256": "bba5361929491ccd69374b93c547f087f09c9eaac5d8cc96da3210485c13d44f",
+                    "url": "https://download.blender.org/release/Blender4.5/blender-4.5.3-linux-x64.tar.xz",
+                    "sha256": "975c58fcb244273838534bba771e64ad87739216b0f9b39a888531a49a72d845",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
