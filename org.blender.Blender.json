@@ -175,8 +175,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/release/Blender4.5/blender-4.5.3-linux-x64.tar.xz",
-                    "sha256": "975c58fcb244273838534bba771e64ad87739216b0f9b39a888531a49a72d845",
+                    "url": "https://download.blender.org/release/Blender4.5/blender-4.5.4-linux-x64.tar.xz",
+                    "sha256": "8c63848ad1ee4369e513679f06525c65c01afd0a85ba95488a778f7a33b231ff",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
