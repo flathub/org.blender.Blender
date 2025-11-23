@@ -162,14 +162,28 @@
             "name": "blender",
             "buildsystem": "simple",
             "build-commands": [
+                "# modify and install Appstream metadata",
+                "xmlstarlet edit --inplace \\",
+                "  --subnode '/component'                                         --type elem --name 'developer' \\",
+                "  --insert  '/component/developer'                               --type attr --name 'id'                --value 'org.blender' \\",
+                "  --subnode '/component/developer'                               --type elem --name 'name'              --value 'Blender Foundation' \\",
+                "  --subnode '/component'                                         --type elem --name 'branding' \\",
+                "  --subnode '/component/branding'                                --type elem --name 'color'             --value '#5ab3f6' \\",
+                "  --insert  '/component/branding/color'                          --type attr --name 'scheme_preference' --value 'light' \\",
+                "  --subnode '/component/branding'                                --type elem --name 'color'             --value '#265787' \\",
+                "  --insert  '/component/branding/color[not(@scheme_preference)]' --type attr --name 'scheme_preference' --value 'dark' \\",
+                "  --insert  '/component/branding/color'                          --type attr --name 'type'              --value 'primary' \\",
+                "  ${FLATPAK_ID}.metainfo.xml",
+                "install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml",
+
+                "# install prebuilt Blender release",
                 "install -Dm755 blender.sh /app/bin/blender",
                 "mv blender /app/blender",
-                "install -Dm644 /app/blender/blender.desktop /app/share/applications/$FLATPAK_ID.desktop",
+                "install -Dm644 /app/blender/blender.desktop /app/share/applications/${FLATPAK_ID}.desktop",
                 "desktop-file-edit --set-icon=${FLATPAK_ID} /app/share/applications/${FLATPAK_ID}.desktop",
-                "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg",
-                "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/$FLATPAK_ID-symbolic.svg",
+                "install -Dm644 /app/blender/blender.svg /app/share/icons/hicolor/scalable/apps${FLATPAK_ID}.svg",
+                "install -Dm644 /app/blender/blender-symbolic.svg /app/share/icons/hicolor/symbolic/apps/${FLATPAK_ID}-symbolic.svg",
                 "cd /app/blender/*.*/datafiles && mv locale /app/share/locale && ln -sf /app/share/locale locale",
-                "install -Dm644 $FLATPAK_ID.metainfo.xml /app/share/metainfo/$FLATPAK_ID.metainfo.xml",
                 "mkdir -p /app/lib/GL"
             ],
             "sources": [
@@ -193,7 +207,14 @@
                 },
                 {
                     "type": "file",
-                    "path": "org.blender.Blender.metainfo.xml"
+                    "url": "https://projects.blender.org/blender/blender/raw/branch/blender-v5.0-release/release/freedesktop/org.blender.Blender.metainfo.xml",
+                    "sha256": "fa0ea455575040126cdf66530a151b770119c4becb8dfcce78cdc053768dee14",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 201,
+                        "stable-only": true,
+                        "url-template": "https://projects.blender.org/blender/blender/raw/branch/blender-v$major.$minor-release/release/freedesktop/org.blender.Blender.metainfo.xml"
+                    }
                 },
                 {
                     "type": "script",
