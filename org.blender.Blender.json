@@ -159,53 +159,10 @@
             ]
         },
         {
-            "name": "xmlstarlet",
-            "config-opts": [
-                "--disable-static-libs",
-                "--with-libxml-libs-prefix=/usr/lib",
-                "--with-libxml-include-prefix=/usr/include/libxml2"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://downloads.sourceforge.net/xmlstar/xmlstarlet-1.6.1.tar.gz",
-                    "sha256": "15d838c4f3375332fd95554619179b69e4ec91418a3a5296e7c631b7ed19e7ca",
-                    "x-checker-data": {
-                        "type": "anitya",
-                        "project-id": 5201,
-                        "stable-only": true,
-                        "url-template": "https://downloads.sourceforge.net/xmlstar/xmlstarlet-$version.tar.gz"
-                    }
-                },
-                {
-                    "type": "shell",
-                    "commands": [
-                        "cp -p /usr/share/automake-*/config.{sub,guess} .;",
-                        "autoreconf -vfi;"
-                    ]
-                }
-            ],
-            "cleanup": [
-                "*"
-            ]
-        },
-        {
             "name": "blender",
             "buildsystem": "simple",
             "build-commands": [
-                "# modify and install Appstream metadata",
-                "xmlstarlet edit --inplace \\",
-                "  --update  '/component/launchable[@type=\"desktop-id\"]'                                               --value 'org.blender.Blender.desktop' \\",
-                "  --subnode '/component'                                         --type elem --name 'developer' \\",
-                "  --insert  '/component/developer'                               --type attr --name 'id'                --value 'org.blender' \\",
-                "  --subnode '/component/developer'                               --type elem --name 'name'              --value 'Blender Foundation' \\",
-                "  --subnode '/component'                                         --type elem --name 'branding' \\",
-                "  --subnode '/component/branding'                                --type elem --name 'color'             --value '#5ab3f6' \\",
-                "  --insert  '/component/branding/color'                          --type attr --name 'scheme_preference' --value 'light' \\",
-                "  --subnode '/component/branding'                                --type elem --name 'color'             --value '#265787' \\",
-                "  --insert  '/component/branding/color[not(@scheme_preference)]' --type attr --name 'scheme_preference' --value 'dark' \\",
-                "  --insert  '/component/branding/color'                          --type attr --name 'type'              --value 'primary' \\",
-                "  ${FLATPAK_ID}.metainfo.xml",
+                "# install Appstream metainfo file",
                 "install -Dm644 ${FLATPAK_ID}.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml",
 
                 "# install prebuilt Blender release",
@@ -247,6 +204,12 @@
                         "stable-only": true,
                         "url-template": "https://projects.blender.org/blender/blender/raw/branch/blender-v$major.$minor-release/release/freedesktop/org.blender.Blender.metainfo.xml"
                     }
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "tweak_metainfo.patch"
+                    ]
                 },
                 {
                     "type": "script",
