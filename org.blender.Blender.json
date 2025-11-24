@@ -164,6 +164,7 @@
             "build-commands": [
                 "# modify and install Appstream metadata",
                 "xmlstarlet edit --inplace \\",
+                "  --update  '/component/launchable[@type=\"desktop-id\"]'                                               --value 'org.blender.Blender.desktop' \\",
                 "  --subnode '/component'                                         --type elem --name 'developer' \\",
                 "  --insert  '/component/developer'                               --type attr --name 'id'                --value 'org.blender' \\",
                 "  --subnode '/component/developer'                               --type elem --name 'name'              --value 'Blender Foundation' \\",
