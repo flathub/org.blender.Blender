@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "24.08",
+    "runtime-version": "25.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
@@ -29,12 +29,12 @@
         },
         "org.freedesktop.Platform.ffmpeg-full": {
             "directory": "lib/ffmpeg",
-            "version": "24.08",
+            "version": "25.08",
             "add-ld-path": "."
         },
         "org.freedesktop.Platform.GL": {
             "directory": "lib/GL",
-            "versions": "1.4;24.08",
+            "versions": "1.4;25.08",
             "subdirectories": true,
             "add-ld-path": "lib:default/lib",
             "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;lib/dri",
@@ -153,8 +153,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/besser82/libxcrypt/releases/download/v4.4.36/libxcrypt-4.4.36.tar.xz",
-                    "sha256": "e5e1f4caee0a01de2aee26e3138807d6d3ca2b8e67287966d1fefd65e1fd8943"
+                    "url": "https://github.com/besser82/libxcrypt/releases/download/v4.5.2/libxcrypt-4.5.2.tar.xz",
+                    "sha256": "71513a31c01a428bccd5367a32fd95f115d6dac50fb5b60c779d5c7942aec071"
                 }
             ]
         },
