@@ -177,8 +177,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/release/Blender5.1/blender-5.1.1-linux-x64.tar.xz",
-                    "sha256": "6f9fff89fef154ef7974d1a1c4b916ab4bc1f5618bcb48d5befee1bd0a7c7f2a",
+                    "url": "https://download.blender.org/release/Blender5.1/blender-5.1.2-linux-x64.tar.xz",
+                    "sha256": "aaccb355f50183979b698bcce7467103a76261b5fa59f4972295842662a285fb",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
