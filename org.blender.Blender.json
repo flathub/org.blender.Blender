@@ -177,8 +177,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.blender.org/release/Blender5.1/blender-5.1.2-linux-x64.tar.xz",
-                    "sha256": "aaccb355f50183979b698bcce7467103a76261b5fa59f4972295842662a285fb",
+                    "url": "https://download.blender.org/release/Blender5.2/blender-5.2.0-linux-x64.tar.xz",
+                    "sha256": "96f6c181a30f4950607839dc84d42a354b250d8a0231b098b59b7bc69c351c48",
                     "strip-components": 0,
                     "x-checker-data": {
                         "type": "anitya",
@@ -195,8 +195,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://projects.blender.org/blender/blender/raw/branch/blender-v5.1-release/release/freedesktop/org.blender.Blender.metainfo.xml",
-                    "sha256": "c9f9dadbcc6ca8c48674cc8a02035c3e2c1b8467047fd0c7e4e3a1cb12f7fad0",
+                    "url": "https://projects.blender.org/blender/blender/raw/branch/blender-v5.2-release/release/freedesktop/org.blender.Blender.metainfo.xml",
+                    "sha256": "2e97cde80f450a02cb7fbad1ec33c3f174813323da2e896fceb09ea43fc4e21a",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 201,
