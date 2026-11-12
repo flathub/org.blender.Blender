@@ -1,5 +1,3 @@
-diff --git a/org.blender.Blender.metainfo.xml b/org.blender.Blender.metainfo.xml
-index 4b656ed..05a050c 100644
 --- a/org.blender.Blender.metainfo.xml
 +++ b/org.blender.Blender.metainfo.xml
 @@ -1,11 +1,14 @@
@@ -19,8 +17,27 @@ index 4b656ed..05a050c 100644
      <description>
          <p>
              Blender is the free and open source 3D creation suite. It supports
-@@ -47,6 +50,10 @@
-             <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
+@@ -32,21 +35,25 @@
+     <screenshots>
+         <screenshot type="default">
+             <caption>Sculpt</caption>
+-            <image>https://download.blender.org/demo/screenshots/blender_screenshot_1.jpg</image>
++            <image>https://mirrors.dotsrc.org/blender/demo/screenshots/blender_screenshot_1.jpg</image>
+         </screenshot>
+         <screenshot>
+             <caption>Model</caption>
+-            <image>https://download.blender.org/demo/screenshots/blender_screenshot_2.jpg</image>
++            <image>https://mirrors.dotsrc.org/blender/demo/screenshots/blender_screenshot_2.jpg</image>
+         </screenshot>
+         <screenshot>
+             <caption>Animate</caption>
+-            <image>https://download.blender.org/demo/screenshots/blender_screenshot_3.jpg</image>
++            <image>https://mirrors.dotsrc.org/blender/demo/screenshots/blender_screenshot_3.jpg</image>
+         </screenshot>
+         <screenshot>
+             <caption>Edit &amp; Grade</caption>
+-            <image>https://download.blender.org/demo/screenshots/blender_screenshot_4.jpg</image>
++            <image>https://mirrors.dotsrc.org/blender/demo/screenshots/blender_screenshot_4.jpg</image>
          </screenshot>
      </screenshots>
 +    <branding>
@@ -28,5 +45,5 @@ index 4b656ed..05a050c 100644
 +        <color type="primary" scheme_preference="dark">#265787</color>
 +    </branding>
      <releases>
-         <release version="5.0" date="2025-11-18">
+         <release version="5.3" date="2026-11-10">
              <description>
