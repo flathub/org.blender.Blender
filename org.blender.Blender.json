@@ -1,7 +1,7 @@
 {
     "id": "org.blender.Blender",
     "runtime": "org.freedesktop.Platform",
-    "runtime-version": "25.08",
+    "runtime-version": "26.08",
     "sdk": "org.freedesktop.Sdk",
     "command": "blender",
     "finish-args": [
@@ -27,14 +27,9 @@
             "bundle": true,
             "autodelete": true
         },
-        "org.freedesktop.Platform.ffmpeg-full": {
-            "directory": "lib/ffmpeg",
-            "version": "25.08",
-            "add-ld-path": "."
-        },
         "org.freedesktop.Platform.GL": {
             "directory": "lib/GL",
-            "versions": "1.4;25.08",
+            "versions": "1.4;26.08",
             "subdirectories": true,
             "add-ld-path": "lib:default/lib",
             "merge-dirs": "vulkan/icd.d;glvnd/egl_vendor.d;lib/dri",
@@ -43,9 +38,6 @@
             "autoprune-unless": "active-gl-driver"
         }
     },
-    "cleanup-commands": [
-        "mkdir -p /app/lib/ffmpeg"
-    ],
     "modules": [
         {
             "name": "x264",
@@ -145,6 +137,9 @@
         },
         {
             "name": "libxcrypt",
+            "build-options": {
+                "cflags": "-Wno-error=discarded-qualifiers"
+            },
             "config-opts": [
                 "--prefix=/app",
                 "--enable-shared",
