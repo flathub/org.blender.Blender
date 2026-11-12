@@ -203,6 +203,9 @@
                     "type": "file",
                     "url": "https://projects.blender.org/blender/blender/raw/branch/blender-v5.3-release/release/freedesktop/org.blender.Blender.metainfo.xml",
                     "sha256": "9223c66d3aba5a6d3c9f9ec92660382814ae727093bb36384351e61401534a34",
+                    "mirror-urls": [
+                        "https://raw.githubusercontent.com/blender/blender/blender-v5.3-release/release/freedesktop/org.blender.Blender.metainfo.xml"
+                    ],
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 201,
