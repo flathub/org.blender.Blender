@@ -185,7 +185,13 @@
                         "type": "anitya",
                         "project-id": 201,
                         "stable-only": true,
-                        "url-template": "https://download.blender.org/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz"
+                        "url-template": "https://download.blender.org/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz",
+                        "mirror-url-templates": [
+                            "https://mirrors.dotsrc.org/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz",
+                            "https://ftp.nluug.nl/pub/graphics/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz",
+                            "https://ftp.halifax.rwth-aachen.de/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz",
+                            "https://mirrors.ocf.berkeley.edu/blender/release/Blender$major.$minor/blender-$version-linux-x64.tar.xz"
+                        ]
                     }
                 },
                 {
@@ -205,7 +211,10 @@
                         "type": "anitya",
                         "project-id": 201,
                         "stable-only": true,
-                        "url-template": "https://projects.blender.org/blender/blender/raw/branch/blender-v$major.$minor-release/release/freedesktop/org.blender.Blender.metainfo.xml"
+                        "url-template": "https://projects.blender.org/blender/blender/raw/branch/blender-v$major.$minor-release/release/freedesktop/org.blender.Blender.metainfo.xml",
+                        "mirror-url-templates": [
+                            "https://raw.githubusercontent.com/blender/blender/blender-v$major.$minor-release/release/freedesktop/org.blender.Blender.metainfo.xml"
+                        ]
                     }
                 },
                 {
